@@ -10,6 +10,7 @@ import ViewAllFiles from './components/ViewAllFiles';
 import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
 import ProfilePage from './components/ProfilePage';
+import { UserProvider } from './contexts/UserProvider';
 
 function App() {
   return (
