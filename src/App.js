@@ -9,7 +9,7 @@ import UploadFiles from './components/UploadFiles';
 import ViewAllFiles from './components/ViewAllFiles';
 import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
-import ProfilePage from './components/ProfilePage';
+import DisplayProfile from './components/DisplayProfile';
 import { UserProvider } from './contexts/UserProvider';
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
             <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/profilepage" element={<ProfilePage />} />
+            <Route path="/displayprofile" element={<DisplayProfile />} />
             <Route path="/editprofile" element={<EditProfile />} />
             <Route path="/uploadfiles" element={<UploadFiles />} />
             <Route path="/viewallfiles" element={<ViewAllFiles />} />
