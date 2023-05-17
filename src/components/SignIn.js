@@ -13,7 +13,7 @@ const SignIn = () => {
     event.preventDefault();
     signInUser(username, password)
       .then(() => {
-        navigate('/coffee');
+        navigate('/displayprofile');
       })
       .catch((error) => {
         console.log(error);
