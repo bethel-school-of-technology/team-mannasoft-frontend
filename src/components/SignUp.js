@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
+import axios from 'axios';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -11,9 +12,17 @@ const SignUp = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    createUser(username, password)
+    axios
+      .post('/api/users', { username, password })
       .then(() => {
-        navigate('/signin');
+        createUser(username, password)
+          .then(() => {
+            navigate('/signin');
+          })
+          .catch((error) => {
+            console.log(error);
+            window.alert('Failed registration: error creating user');
+          });
       })
       .catch((error) => {
         console.log(error);
