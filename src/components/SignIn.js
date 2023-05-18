@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
+import axios from 'axios';
 
 const SignIn = () => {
   const [username, setUsername] = useState('');
@@ -11,9 +12,17 @@ const SignIn = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    signInUser(username, password)
+    axios
+      .post('/api/login', { username, password })
       .then(() => {
-        navigate('/coffee');
+        signInUser(username, password)
+          .then(() => {
+            navigate('/displayprofile');
+          })
+          .catch((error) => {
+            console.log(error);
+            window.alert('Failed login');
+          });
       })
       .catch((error) => {
         console.log(error);

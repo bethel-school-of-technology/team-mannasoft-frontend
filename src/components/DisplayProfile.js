@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import EditProfile from './EditProfile';
+import axios from 'axios';
 
 const DisplayProfile = () => {
   const [user, setUser] = useState({
@@ -9,6 +10,17 @@ const DisplayProfile = () => {
     email: '',
     phoneNumber: '',
   });
+
+  useEffect(() => {
+    axios
+      .get('/api/user')
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const handleUserChange = (user) => {
     setUser(user);
