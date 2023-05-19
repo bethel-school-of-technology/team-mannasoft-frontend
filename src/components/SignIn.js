@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
-import axios from 'axios';
 
 const SignIn = () => {
   const [username, setUsername] = useState('');
@@ -10,24 +9,34 @@ const SignIn = () => {
   let { signInUser } = useContext(UserContext);
   let navigate = useNavigate();
 
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   axios
+  //     .post('/api/login', { username, password })
+  //     .then(() => {
+  //       signInUser(username, password)
+  //         .then(() => {
+  //           navigate('/displayprofile');
+  //         })
+  //         .catch((error) => {
+  //           console.log(error);
+  //           window.alert('Failed login');
+  //         });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       window.alert('Failed login');
+  //     });
+  // }
+
   function handleSubmit(event) {
     event.preventDefault();
-    axios
-      .post('/api/login', { username, password })
-      .then(() => {
-        signInUser(username, password)
-          .then(() => {
-            navigate('/displayprofile');
-          })
-          .catch((error) => {
-            console.log(error);
-            window.alert('Failed login');
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-        window.alert('Failed login');
-      });
+    signInUser(username, password).then(() => {
+      navigate('/displayprofile');
+    }).catch(error => {
+      console.log(error);
+      window.alert('Failed login')
+    })
   }
 
   return (
