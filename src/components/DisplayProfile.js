@@ -24,9 +24,9 @@ const DisplayProfile = () => {
       });
   }, []);
 
-  const handleUserChange = (user) => {
-    setUser(user);
-  };
+  // const handleUserChange = (user) => {
+  //   setUser(user);
+  // };
   
   let { deleteUser } = useContext(UserContext)
 
@@ -34,49 +34,49 @@ const DisplayProfile = () => {
     deleteUser(userId)
   }
 
-  return (
-    <div>
-      <h2>My Profile</h2>
-      <EditProfile user={user} onUserChange={handleUserChange} />
-      <hr />
-      <h3>My Profile Information:</h3>
-      <p>Username: {user.username}</p>
-      <p>First Name: {user.firstName}</p>
-      <p>Last Name: {user.lastName}</p>
-      <p>Email: {user.email}</p>
-      <p>Phone Number: {user.phoneNumber}</p>
-      <Link to="/editprofile">Edit User</Link>
-
-    </div>
-  );
-
-
-
   // return (
-  //   <UserContext.Consumer>
-  //     {
-  //       ({ user }) => {
-  //         return <div>
-  //           <h3>My Profile Information:</h3>
-  //           {console.log(user)}
-  //           <div>
-  //             {user.map((u) => {
-  //               return <div key={u.id}>
-  //                   <p>Username: {user.username}</p>
-  //                   <p>First Name: {user.firstName}</p>
-  //                   <p>Last Name: {user.lastName}</p>
-  //                   <p>Email: {user.email}</p>
-  //                   <p>Phone Number: {user.phoneNumber}</p>
+  //   <div>
+  //     <h2>My Profile</h2>
+  //     <EditProfile user={user} onUserChange={handleUserChange} />
+  //     <hr />
+  //     <h3>My Profile Information:</h3>
+  //     <p>Username: {user.username}</p>
+  //     <p>First Name: {user.firstName}</p>
+  //     <p>Last Name: {user.lastName}</p>
+  //     <p>Email: {user.email}</p>
+  //     <p>Phone Number: {user.phoneNumber}</p>
+  //     <Link to="/editprofile">Edit User</Link>
 
-  //                   <button>Edit User</button>
-  //                 </div>
-  //             })}
-  //           </div>
-  //         </div>
-  //       }
-  //     }
-  //   </UserContext.Consumer>
-  // )
+  //   </div>
+  // );
+
+
+
+  return (
+    <UserContext.Consumer>
+      {
+        ({ user }) => {
+          return <div>
+            <h3>My Profile Information:</h3>
+            {console.log(user)}
+            <div>
+              {user.map((u) => {
+                return <div key={u.id}>
+                    <p>Username: {user.username}</p>
+                    <p>First Name: {user.firstName}</p>
+                    <p>Last Name: {user.lastName}</p>
+                    <p>Email: {user.email}</p>
+                    <p>Phone Number: {user.phoneNumber}</p>
+
+                    <button>Edit User</button>
+                  </div>
+              })}
+            </div>
+          </div>
+        }
+      }
+    </UserContext.Consumer>
+  )
 };
 
 export default DisplayProfile;
