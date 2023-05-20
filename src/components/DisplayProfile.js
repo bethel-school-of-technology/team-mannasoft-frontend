@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import EditProfile from './EditProfile';
+import UserContext from '../contexts/UserContext';
 import axios from 'axios';
 
 const DisplayProfile = () => {
@@ -13,7 +15,7 @@ const DisplayProfile = () => {
 
   useEffect(() => {
     axios
-      .get('/api/user')
+      .get('/api/users')
       .then((response) => {
         setUser(response.data);
       })
@@ -22,23 +24,59 @@ const DisplayProfile = () => {
       });
   }, []);
 
-  const handleUserChange = (user) => {
-    setUser(user);
-  };
+  // const handleUserChange = (user) => {
+  //   setUser(user);
+  // };
+  
+  let { deleteUser } = useContext(UserContext)
+
+  function handleDeleteUser(userId) {
+    deleteUser(userId)
+  }
+
+  // return (
+  //   <div>
+  //     <h2>My Profile</h2>
+  //     <EditProfile user={user} onUserChange={handleUserChange} />
+  //     <hr />
+  //     <h3>My Profile Information:</h3>
+  //     <p>Username: {user.username}</p>
+  //     <p>First Name: {user.firstName}</p>
+  //     <p>Last Name: {user.lastName}</p>
+  //     <p>Email: {user.email}</p>
+  //     <p>Phone Number: {user.phoneNumber}</p>
+  //     <Link to="/editprofile">Edit User</Link>
+
+  //   </div>
+  // );
+
+
 
   return (
-    <div>
-      <h2>My Profile</h2>
-      <EditProfile user={user} onUserChange={handleUserChange} />
-      <hr />
-      <h3>My Profile Information:</h3>
-      <p>Username: {user.username}</p>
-      <p>First Name: {user.firstName}</p>
-      <p>Last Name: {user.lastName}</p>
-      <p>Email: {user.email}</p>
-      <p>Phone Number: {user.phoneNumber}</p>
-    </div>
-  );
+    <UserContext.Consumer>
+      {
+        ({ user }) => {
+          return <div>
+            <h3>My Profile Information:</h3>
+            {console.log(user)}
+            <div>
+              {user.map((u) => {
+                return <div key={u.id}>
+                    <p>Username: {user.username}</p>
+                    <p>First Name: {user.firstName}</p>
+                    <p>Last Name: {user.lastName}</p>
+                    <p>Email: {user.email}</p>
+                    <p>Phone Number: {user.phoneNumber}</p>
+
+                    <button>Edit User</button>
+                  </div>
+              })}
+            </div>
+          </div>
+        }
+      }
+    </UserContext.Consumer>
+  )
 };
 
 export default DisplayProfile;

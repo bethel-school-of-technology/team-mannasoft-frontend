@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../css/EditProfile.css'
 
 const EditProfile = () => {
   const [user, setUser] = useState({
     username: '',
-    firstName: '',
-    lastName: '',
     email: '',
     phoneNumber: '',
   });
@@ -21,9 +20,10 @@ const EditProfile = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`/api/user/${user.userId}`, user)
+      .put(`/api/users/${user.userId}`, user)
       .then((response) => {
         console.log(response);
+        window.alert('Are you sure?')
       })
       .catch((error) => {
         console.log(error);
@@ -31,29 +31,35 @@ const EditProfile = () => {
   };
 
   useEffect(() => {
-    axios.get(`/api/user/${userId}`).then((response) => {
+    axios.get(`/api/users/${user.userId}`).then((response) => {
       setUser(response.data);
     });
   }, []);
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input type="text" name="username" value={user.username} onChange={handleChange} />
+      <h3>EDIT</h3>
+      <span>Username </span>
+      <input type="text" name="username" value={user.username} onChange={handleChange} placeholder='Username' className='edit-profile'/>
+      <br /><br />
 
-      <label htmlFor="firstName">First Name</label>
-      <input type="text" name="firstName" value={user.firstName} onChange={handleChange} />
+      <span>First Name </span>
+      <input type="text" name="firstName" value={user.firstName} onChange={handleChange} placeholder='First Name' className='edit-profile'/>
+      <br /><br />
 
-      <label htmlFor="lastName">Last Name</label>
-      <input type="text" name="lastName" value={user.lastName} onChange={handleChange} />
+      <span>Last Name </span>
+      <input type="text" name="lastName" value={user.lastName} onChange={handleChange} placeholder='Last Name' className='edit-profile'/>
+      <br /><br />
 
-      <label htmlFor="email">Email</label>
-      <input type="text" name="email" value={user.email} onChange={handleChange} />
+      <span>Email </span>
+      <input type="text" name="email" value={user.email} onChange={handleChange} placeholder='Email' className='edit-profile'/>
+      <br /><br />
 
-      <label htmlFor="phoneNumber">Phone Number</label>
-      <input type="text" name="phoneNumber" value={user.phoneNumber} onChange={handleChange} />
+      <span>Phone Number </span>
+      <input type="text" name="phoneNumber" value={user.phoneNumber} onChange={handleChange} placeholder='888-888-8888' className='edit-profile'/>
+      <br /><br />
 
-      <button type="submit">Save Changes</button>
+      <button type="submit" className='edit-button'>Save Changes</button>
     </form>
   );
 };
