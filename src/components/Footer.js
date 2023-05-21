@@ -1,10 +1,12 @@
-import React from 'react'
-import '../css/Footer.css'
+import React from 'react';
+import '../styles/Footer.css';
 
 const Footer = () => {
-    return (
-        <div className='footer-grid-container'><p>&copy; 2023 All Rights Reserved - Bethel Tech - MannaSoft</p></div>
-    )
-}
+  return (
+    <div className="footer">
+      <p>&copy; 2023 All Rights Reserved - Bethel Tech - MannaSoft</p>
+    </div>
+  );
+};
 
-export default Footer
+export default Footer;

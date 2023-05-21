@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
+import '../styles/global.css';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -13,63 +15,49 @@ const SignUp = () => {
   let { createUser } = useContext(UserContext);
   let navigate = useNavigate();
 
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   axios
-  //     .post('/api/users/', { username, password })
-  //     .then(() => {
-  //       createUser(username, password, firstName, lastName, email, phoneNumber)
-  //         .then(() => {
-  //           navigate('/signin');
-  //         })
-  //         .catch((error) => {
-  //           console.log(error);
-  //           window.alert('Failed registration: error creating user');
-  //         });
-  //     })
-  // }
-
   function handleSubmit(event) {
     event.preventDefault();
-    createUser(username, password, firstName, lastName, email, phoneNumber).then(() => {
-      navigate('/signin');
-    }).catch(error => {
-      console.log(error);
-      window.alert('Failed registration: error creating user')
-    })
+    createUser(username, password, firstName, lastName, email, phoneNumber)
+      .then(() => {
+        navigate('/signin');
+      })
+      .catch((error) => {
+        console.log(error);
+        window.alert('Failed registration: error creating user');
+      });
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>REGISTER</h1>
-      <br />
-      <br />
-      <span>Username </span>
-      <input placeholder="Enter UserName" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-      <br />
-      <br />
-      <span>Password </span>
-      <input placeholder="Enter Password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <br />
-      <br />
-      <span>First Name </span>
-      <input placeholder="Enter first" type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-      <br />
-      <br />
-      <span>Last Name </span>
-      <input placeholder="Enter last" type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-      <br />
-      <br />
-      <span>Email </span>
-      <input placeholder="Enter Email" type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <br />
-      <br />
-      <span>Phone Number </span>
-      <input placeholder="Enter Email" type="number" name="phoneNumber" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-      <br />
-      <br />
-      <button>Sign Up</button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <h1>Sign Up</h1>
+      <Form.Group className="custom-form" controlId="username">
+        <Form.Label className="custom-label">Username</Form.Label>
+        <Form.Control type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
+      </Form.Group>
+      <Form.Group className="custom-form" controlId="password">
+        <Form.Label className="custom-label">Password</Form.Label>
+        <Form.Control type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </Form.Group>
+      <Form.Group className="custom-form" controlId="firstName">
+        <Form.Label className="custom-label">First Name</Form.Label>
+        <Form.Control type="text" placeholder="Enter first name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+      </Form.Group>
+      <Form.Group className="custom-form" controlId="lastName">
+        <Form.Label className="custom-label">Last Name</Form.Label>
+        <Form.Control type="text" placeholder="Enter last name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+      </Form.Group>
+      <Form.Group className="custom-form" controlId="email">
+        <Form.Label className="custom-label">Email</Form.Label>
+        <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      </Form.Group>
+      <Form.Group className="custom-form" controlId="phoneNumber">
+        <Form.Label className="custom-label">Phone Number</Form.Label>
+        <Form.Control type="tel" placeholder="Enter phone number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+      </Form.Group>
+      <Button type="submit" className="custom-button">
+        Sign Up
+      </Button>
+    </Form>
   );
 };
 
