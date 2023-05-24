@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import '../styles/global.css';
 
 const EditProfile = () => {
   const [user, setUser] = useState({
@@ -21,9 +23,10 @@ const EditProfile = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`/api/user/${user.userId}`, user)
+      .put(`/api/users/${user.userId}`, user)
       .then((response) => {
         console.log(response);
+        window.alert('Are you sure?');
       })
       .catch((error) => {
         console.log(error);
@@ -31,30 +34,43 @@ const EditProfile = () => {
   };
 
   useEffect(() => {
-    axios.get(`/api/user/${userId}`).then((response) => {
+    axios.get(`/api/users/${user.userId}`).then((response) => {
       setUser(response.data);
     });
   }, []);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input type="text" name="username" value={user.username} onChange={handleChange} />
+    <Form onSubmit={handleSubmit}>
+      <h1>Edit Profile</h1>
+      <br />
+      <Form.Group className="custom-form" controlId="username">
+        <Form.Label className="custom-label">Username</Form.Label>
+        <Form.Control type="text" name="username" value={user.username} onChange={handleChange} placeholder="Username" className="edit-profile" />
+      </Form.Group>
+      <Form.Group className="custom-form" controlId="firstName">
+        <Form.Label className="custom-label">First Name</Form.Label>
+        <Form.Control type="text" name="firstName" value={user.firstName} onChange={handleChange} placeholder="First Name" className="edit-profile" />
+      </Form.Group>
 
-      <label htmlFor="firstName">First Name</label>
-      <input type="text" name="firstName" value={user.firstName} onChange={handleChange} />
+      <Form.Group className="custom-form" controlId="lastName">
+        <Form.Label className="custom-label">Last Name</Form.Label>
+        <Form.Control type="text" name="lastName" value={user.lastName} onChange={handleChange} placeholder="Last Name" className="edit-profile" />
+      </Form.Group>
 
-      <label htmlFor="lastName">Last Name</label>
-      <input type="text" name="lastName" value={user.lastName} onChange={handleChange} />
+      <Form.Group className="custom-form" controlId="email">
+        <Form.Label className="custom-label">Email</Form.Label>
+        <Form.Control type="text" name="email" value={user.email} onChange={handleChange} placeholder="Email" className="edit-profile" />
+      </Form.Group>
 
-      <label htmlFor="email">Email</label>
-      <input type="text" name="email" value={user.email} onChange={handleChange} />
+      <Form.Group className="custom-form" controlId="phoneNumber">
+        <Form.Label className="custom-label">Phone Number</Form.Label>
+        <Form.Control type="text" name="phoneNumber" value={user.phoneNumber} onChange={handleChange} placeholder="888-888-8888" className="edit-profile" />
+      </Form.Group>
 
-      <label htmlFor="phoneNumber">Phone Number</label>
-      <input type="text" name="phoneNumber" value={user.phoneNumber} onChange={handleChange} />
-
-      <button type="submit">Save Changes</button>
-    </form>
+      <Button type="submit" className="custom-button">
+        Save Changes
+      </Button>
+    </Form>
   );
 };
 

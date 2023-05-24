@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import '../styles/Footer.css';
 
 const Footer = () => {
-    return (
-        <div><p>&copy; 2023 All Rights Reserved - Bethel Tech - Mannasoft</p></div>
-    )
-}
+  return (
+    <div className="footer">
+      <p>&copy; 2023 All Rights Reserved - Bethel Tech - MannaSoft</p>
+    </div>
+  );
+};
 
-export default Footer
+export default Footer;
