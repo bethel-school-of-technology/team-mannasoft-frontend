@@ -6,6 +6,8 @@ import '../styles/global.css';
 const EditProfile = () => {
   const [user, setUser] = useState({
     username: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phoneNumber: '',
   });
