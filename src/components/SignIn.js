@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 
@@ -31,27 +32,32 @@ const SignIn = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    signInUser(username, password).then(() => {
-      navigate('/displayprofile');
-    }).catch(error => {
-      console.log(error);
-      window.alert('Failed login')
-    })
+    signInUser(username, password)
+      .then(() => {
+        navigate('/displayprofile');
+      })
+      .catch((error) => {
+        console.log(error);
+        window.alert('Failed login');
+      });
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>LOGIN</h1>
-      <span>Username </span>
-      <input placeholder="Enter username" type="text" name="username" onChange={(e) => setUsername(e.target.value)} />
-      <br></br>
-      <br></br>
-      <span>Password </span>
-      <input placeholder="Enter password" type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
+    <Form onSubmit={handleSubmit}>
+      <h1>Sign In</h1>
       <br />
-      <br></br>
-      <button>Sign In</button>
-    </form>
+      <Form.Group className="custom-form" controlId="username">
+        <Form.Label className="custom-label">Username</Form.Label>
+        <Form.Control type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
+      </Form.Group>
+      <Form.Group className="custom-form" controlId="password">
+        <Form.Label className="custom-label">Password</Form.Label>
+        <Form.Control type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </Form.Group>
+      <Button className="custom-button" type="submit">
+        Sign In
+      </Button>
+    </Form>
   );
 };
 

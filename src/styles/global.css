@@ -1,0 +1,203 @@
+/* Reset default styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set up colors */
+:root {
+  --primary-color: #b2bbda; /* Blue */
+  --neutral-color: #edeae8; /* Neutral */
+  --accent-color: #1d38ed;
+  --text-color: #000;
+}
+
+/* Global styles */
+
+.container {
+  min-height: calc(100vh - 142px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  /* color: var(--primary-color); */
+  margin-bottom: 10px;
+}
+
+h1,
+h2 {
+  font-family: 'Space Mono', monospace;
+  font-variant-ligatures: no-common-ligatures;
+}
+
+p,
+ul,
+a {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+/* Buttons */
+
+.custom-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: var(--neutral-color);
+  text-decoration: none;
+  border-radius: 100px;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  border: none;
+}
+
+.btn-primary {
+  display: inline-block !important;
+  padding: 10px 20px !important;
+  background-color: var(--accent-color) !important;
+  color: var(--neutral-color) !important;
+  text-decoration: none !important;
+  border-radius: 100px !important;
+  transition: background-color 0.3s ease !important;
+  font-size: 16px !important;
+  border: none !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.btn-primary:hover {
+  background-color: #556af1 !important;
+  color: var(--neutral-color) !important;
+
+  transition: background-color 0.3s ease !important;
+}
+
+.custom-button:hover {
+  background-color: #0056b3; /* Darker shade of blue */
+}
+
+/* Forms */
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* text-align: center; */
+}
+
+.custom-label {
+  margin-bottom: 5px;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='tel'],
+textarea {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.custom-label {
+  /* text-align: center; */
+  font-size: 12px; /* Adjust the font size as desired */
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Layout */
+/* .header {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+} */
+
+.footer {
+  padding: 12px;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer p {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+/* Nav Bar */
+.nav {
+  padding: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Align items to the left and right */
+  align-items: center;
+}
+
+.nav ul {
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+  list-style: none;
+}
+
+.nav-right {
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+  list-style: none;
+}
+
+.nav li {
+  margin: 0 20px;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  color: var(--text-color);
+}
+
+.nav a:hover {
+  color: var(--accent-color);
+}
+
+.nav-signup {
+  padding: 10px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--accent-color);
+  transition: background-color 0.3s ease;
+}
+
+.nav-signup .signup-link {
+  color: var(--accent-color);
+}
+
+.nav-signup:hover {
+  background-color: var(--accent-color);
+  transition: background-color 0.3s ease;
+  border: 1px solid var(--accent-color);
+}
+
+.nav-signup:hover .signup-link {
+  color: var(--neutral-color);
+}
+
+.center-align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
