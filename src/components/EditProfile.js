@@ -39,33 +39,29 @@ const EditProfile = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Edit Profile</h2>
-      <Form.Group controlId="username">
-        <Form.Label>Username</Form.Label>
-        <br />
+      <h1>Edit Profile</h1>
+      <br />
+      <Form.Group className="custom-form" controlId="username">
+        <Form.Label className="custom-label">Username</Form.Label>
         <Form.Control type="text" name="username" value={user.username} onChange={handleChange} placeholder="Username" className="edit-profile" />
       </Form.Group>
-      <Form.Group controlId="firstName">
-        <Form.Label>First Name</Form.Label>
-        <br />
+      <Form.Group className="custom-form" controlId="firstName">
+        <Form.Label className="custom-label">First Name</Form.Label>
         <Form.Control type="text" name="firstName" value={user.firstName} onChange={handleChange} placeholder="First Name" className="edit-profile" />
       </Form.Group>
 
-      <Form.Group controlId="lastName">
-        <Form.Label>Last Name</Form.Label>
-        <br />
+      <Form.Group className="custom-form" controlId="lastName">
+        <Form.Label className="custom-label">Last Name</Form.Label>
         <Form.Control type="text" name="lastName" value={user.lastName} onChange={handleChange} placeholder="Last Name" className="edit-profile" />
       </Form.Group>
 
-      <Form.Group controlId="email">
-        <Form.Label>Email</Form.Label>
-        <br />
+      <Form.Group className="custom-form" controlId="email">
+        <Form.Label className="custom-label">Email</Form.Label>
         <Form.Control type="text" name="email" value={user.email} onChange={handleChange} placeholder="Email" className="edit-profile" />
       </Form.Group>
 
-      <Form.Group controlId="phoneNumber">
-        <Form.Label>Phone Number</Form.Label>
-        <br />
+      <Form.Group className="custom-form" controlId="phoneNumber">
+        <Form.Label className="custom-label">Phone Number</Form.Label>
         <Form.Control type="text" name="phoneNumber" value={user.phoneNumber} onChange={handleChange} placeholder="888-888-8888" className="edit-profile" />
       </Form.Group>
 

@@ -18,7 +18,7 @@ function App() {
     <UserProvider>
       <div>
         <BrowserRouter>
-          <Header className="header" /> {/* Apply header class */}
+          <Header /> {/* Apply header class */}
           <div className="container">
             <Routes>
               <Route path="/" element={<Home />} />

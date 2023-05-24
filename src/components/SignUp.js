@@ -30,6 +30,7 @@ const SignUp = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <h1>Sign Up</h1>
+      <br />
       <Form.Group className="custom-form" controlId="username">
         <Form.Label className="custom-label">Username</Form.Label>
         <Form.Control type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -54,9 +55,7 @@ const SignUp = () => {
         <Form.Label className="custom-label">Phone Number</Form.Label>
         <Form.Control type="tel" placeholder="Enter phone number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
       </Form.Group>
-      <Button type="submit" className="custom-button">
-        Sign Up
-      </Button>
+      <Button type="submit">Sign Up</Button>
     </Form>
   );
 };

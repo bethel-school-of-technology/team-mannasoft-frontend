@@ -1,8 +1,8 @@
 .edit-profile {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .edit-button:hover {
-    background-color: chartreuse;
+  background-color: chartreuse;
 }
