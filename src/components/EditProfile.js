@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/EditProfile.css'
+import { useNavigate } from 'react-router-dom';
 
 const EditProfile = () => {
   const [user, setUser] = useState({
     username: '',
     email: '',
+    firstName: '',
+    lastName: '',
     phoneNumber: '',
   });
+
+  let navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -24,17 +29,18 @@ const EditProfile = () => {
       .then((response) => {
         console.log(response);
         window.alert('Are you sure?')
+        // navigate('/profilepage/:userId');
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  useEffect(() => {
-    axios.get(`/api/users/${user.userId}`).then((response) => {
-      setUser(response.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get(`/api/users/${user.userId}`).then((response) => {
+  //     setUser(response.data);
+  //   });
+  // }, []);
 
   return (
     <form onSubmit={handleSubmit}>

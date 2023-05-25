@@ -15,7 +15,7 @@ const DisplayProfile = () => {
 
   useEffect(() => {
     axios
-      .get('/api/users')
+      .get('/api/users/')
       .then((response) => {
         setUser(response.data);
       })
@@ -24,9 +24,9 @@ const DisplayProfile = () => {
       });
   }, []);
 
-  const handleUserChange = (user) => {
-    setUser(user);
-  };
+  // const handleUserChange = (user) => {
+  //   setUser(user);
+  // };
   
   let { deleteUser } = useContext(UserContext)
 
@@ -46,7 +46,7 @@ const DisplayProfile = () => {
       <p>Email: {user.email}</p>
       <p>Phone Number: {user.phoneNumber}</p>
       <Link to="/editprofile">Edit User</Link>
-      <br />
+      <br /> <br />
       <button onClick={handleDeleteUser}>Delete User</button>
     </div>
   );

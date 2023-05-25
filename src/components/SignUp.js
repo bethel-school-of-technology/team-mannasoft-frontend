@@ -31,7 +31,7 @@ const SignUp = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    createUser(username, password, firstName, lastName, email, phoneNumber).then(() => {
+    createUser({username, password, firstName, lastName, email}).then(() => {
       navigate('/signin');
     }).catch(error => {
       console.log(error);
@@ -65,7 +65,7 @@ const SignUp = () => {
       <br />
       <br />
       <span>Phone Number </span>
-      <input placeholder="Enter Email" type="number" name="phoneNumber" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+      <input placeholder="Enter Phone Number" type="number" name="phoneNumber" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
       <br />
       <br />
       <button>Sign Up</button>

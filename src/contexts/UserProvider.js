@@ -13,8 +13,8 @@ export const UserProvider = (props) => {
     fetchData();
   }, []);
 
-  function createUser(username, password) {
-    let user = { username, password };
+  function createUser(user) {
+    //let user = { username, password };
 
     return axios.post(baseUrl, user).then(response => {return new Promise(resolve => resolve(response.data))})
     // const response = axios.post(baseUrl, user);
@@ -24,27 +24,27 @@ export const UserProvider = (props) => {
   function signInUser(username, password) {
     let user = { username, password };
 
-    return axios.post(`${baseUrl}/login`, user)
+    return axios.post(`${baseUrl}login`, user)
     .then(response => {
-      localStorage.setItem('myUserToken', response.data.token)
+      localStorage.setItem('myTweetToken', response.data.token)
       return new Promise(resolve => resolve(response.data))
     })
-    // const response = axios.post(`${baseUrl}/login`, user);
+    // const response = axios.post(`${baseUrl}login`, user);
     // localStorage.setItem('myUserToken', response.data.token);
     // return new Promise((resolve) => resolve(response.data));
   }
 
-  function getUser(username, firstname, lastname, email, phoneNumber) {
+  function getUser(userId, username, firstname, lastname, email, phoneNumber) {
     let profile = { username, firstname, lastname, email, phoneNumber }
     
-    return axios.get(baseUrl, profile).then(response => setUser(response.data));
+    return axios.get(baseUrl + user.userId, profile).then(response => setUser(response.data));
 }
 
-  function editUser(userId, username, password, email, phoneNumber) {
-    let user = { username, password, email, phoneNumber };
+  function editUser(userId, username, email, phoneNumber) {
+    let user = { username, email, phoneNumber };
 
     let myHeaders = {
-      Authorization: `Bearer ${localStorage.getItem('myUserToken')}`
+      Authorization: `Bearer ${localStorage.getItem('myTweetToken')}`
     };
 
     return axios.put(baseUrl + userId, user, { headers: myHeaders })
@@ -56,7 +56,7 @@ export const UserProvider = (props) => {
 
   function deleteUser(userId) {
     let myHeaders = {
-      Authorization: `Bearer ${localStorage.getItem('myUserToken')}`
+      Authorization: `Bearer ${localStorage.getItem('myTweetToken')}`
     };
 
     return axios.delete(baseUrl + userId, { headers: myHeaders })
