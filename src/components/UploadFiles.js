@@ -10,25 +10,26 @@ const UploadFiles = () => {
         e.preventDefault()
         console.log(upload)
         const formData = new FormData();
-        formData.append("userpic", upload);
+        formData.append("file", upload);
         formData.append("description", description);
 
         console.log(formData.get("description"));
 
-        // axios
-        // .post("https://file-upload8.p.rapidapi.com/upload", formData, {
-        //   headers: {
-        //     "Content-Type": "multipart/form-data",
-        //   },
-        // })
-        // .then((response) => {
-        //   // handle the response
-        //   console.log(response);
-        // })
-        // .catch((error) => {
-        //   // handle errors
-        //   console.log(error);
-        // });
+        axios
+            .post("http://localhost:3001/api/files", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    "Authorization": `Bearer ${localStorage.getItem("myUserToken")}`
+                },
+            })
+            .then((response) => {
+                // handle the response
+                console.log(response);
+            })
+            .catch((error) => {
+                // handle errors
+                console.log(error);
+            });
     }
 
     const handleFileUpload = (e) => {

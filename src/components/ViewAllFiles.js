@@ -1,56 +1,92 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Card, ListGroup, Row, Col, Container } from 'react-bootstrap';
 
 // Placeholder data for files
-const files = [
-  {
-    name: 'File 1',
-    type: 'PDF',
-    tags: ['tag1', 'tag2', 'tag3'],
-  },
-  {
-    name: 'File 2',
-    type: 'Image',
-    tags: ['tag4', 'tag5'],
-  },
-  {
-    name: 'File 3',
-    type: 'Document',
-    tags: ['tag1', 'tag3'],
-  },
-  {
-    name: 'File 4',
-    type: 'Document',
-    tags: ['tag1', 'tag3'],
-  },
-  {
-    name: 'File 5',
-    type: 'Document',
-    tags: ['tag1', 'tag3'],
-  },
-  {
-    name: 'File 6',
-    type: 'Document',
-    tags: ['tag1', 'tag3'],
-  },
-];
+// const files = [
+//   {
+//     name: 'File 1',
+//     type: 'PDF',
+//     tags: ['tag1', 'tag2', 'tag3'],
+//   },
+//   {
+//     name: 'File 2',
+//     type: 'Image',
+//     tags: ['tag4', 'tag5'],
+//   },
+//   {
+//     name: 'File 3',
+//     type: 'Document',
+//     tags: ['tag1', 'tag3'],
+//   },
+//   {
+//     name: 'File 4',
+//     type: 'Document',
+//     tags: ['tag1', 'tag3'],
+//   },
+//   {
+//     name: 'File 5',
+//     type: 'Document',
+//     tags: ['tag1', 'tag3'],
+//   },
+//   {
+//     name: 'File 6',
+//     type: 'Document',
+//     tags: ['tag1', 'tag3'],
+//   },
+// ];
 
 const ViewAllFiles = () => {
+  const [files, setFiles] = useState([])
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/files", {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("myUserToken")}`
+        },
+      })
+      .then((response) => {
+        // handle the response
+        console.log(response);
+        setFiles(response.data)
+      })
+      .catch((error) => {
+        // handle errors
+        console.log(error);
+      });
+  }, [])
+  {/* <a href={`http://localhost:3001/api/files/${file.fileId}`}>Download File</a> */ }
+
+  const handleDownload = (e, id) => {
+    axios.get(`http://localhost:3001/api/files/${id}`, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("myUserToken")}`
+      }
+    })
+      .then(response => {
+        console.log(response.data)
+      })
+  }
+
   return (
     <div>
       <Row xs={1} sm={2} md={3} className="g-4">
         {files.map((file, index) => (
-          <Col key={index}>
+          <Col key={file.fileId}>
             <Card style={{ width: '18rem' }}>
               <Card.Body>
-                <Card.Title>{file.name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{file.type}</Card.Subtitle>
+                <Card.Title>{file.fileName}</Card.Title>
+                {/* <Card.Subtitle className="mb-2 text-muted">{file.type}</Card.Subtitle> */}
+                <Card.Text>
+                  <p> {file.description}</p>
+                  <p><button onClick={(e) => handleDownload(e, file.fileId)}>Download File</button>  </p>
+                </Card.Text>
               </Card.Body>
-              <ListGroup variant="flush">
+              {/* <ListGroup variant="flush">
                 {file.tags.map((tag, index) => (
                   <ListGroup.Item key={index}>{tag}</ListGroup.Item>
                 ))}
-              </ListGroup>
+              </ListGroup> */}
             </Card>
           </Col>
         ))}
