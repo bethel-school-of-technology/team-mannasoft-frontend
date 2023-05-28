@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Card, ListGroup, Row, Col, Container } from 'react-bootstrap';
+import { Card, Col, Container, Form, Row } from 'react-bootstrap';
 
 // Placeholder data for files
 // const files = [
@@ -37,41 +37,75 @@ import { Card, ListGroup, Row, Col, Container } from 'react-bootstrap';
 // ];
 
 const ViewAllFiles = () => {
-  const [files, setFiles] = useState([])
+  const [files, setFiles] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortOrder, setSortOrder] = useState('asc');
+
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/files", {
+      .get('http://localhost:3001/api/files', {
         headers: {
-          "Authorization": `Bearer ${localStorage.getItem("myUserToken")}`
+          Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
         },
       })
       .then((response) => {
         // handle the response
         console.log(response);
-        setFiles(response.data)
+        setFiles(response.data);
       })
       .catch((error) => {
         // handle errors
         console.log(error);
       });
-  }, [])
-  {/* <a href={`http://localhost:3001/api/files/${file.fileId}`}>Download File</a> */ }
+  }, []);
+  {
+    /* <a href={`http://localhost:3001/api/files/${file.fileId}`}>Download File</a> */
+  }
 
   const handleDownload = (e, id) => {
-    axios.get(`http://localhost:3001/api/files/${id}`, {
-      headers: {
-        "Authorization": `Bearer ${localStorage.getItem("myUserToken")}`
-      }
-    })
-      .then(response => {
-        console.log(response.data)
+    axios
+      .get(`http://localhost:3001/api/files/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
+        },
       })
-  }
+      .then((response) => {
+        console.log(response.data);
+      });
+  };
+
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSort = (e) => {
+    setSortOrder(e.target.value);
+  };
+
+  const sortedFiles = files.sort((a, b) => {
+    const fileNameA = a.fileName.toLowerCase();
+    const fileNameB = b.fileName.toLowerCase();
+    if (sortOrder === 'asc') {
+      return fileNameA.localeCompare(fileNameB);
+    } else {
+      return fileNameB.localeCompare(fileNameA);
+    }
+  });
+
+  const filteredFiles = sortedFiles.filter((file) => file.fileName.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
     <div>
+      <Form.Control type="text" placeholder="Search by file name" value={searchQuery} onChange={handleSearch} />
+
+      <Form.Select value={sortOrder} onChange={handleSort}>
+        <option value="asc">Sort A to Z</option>
+        <option value="desc">Sort Z to A</option>
+      </Form.Select>
+
       <Row xs={1} sm={2} md={3} className="g-4">
-        {files.map((file, index) => (
+        {filteredFiles.map((file, index) => (
+          // {files.map((file, index) => (
           <Col key={file.fileId}>
             <Card style={{ width: '18rem' }}>
               <Card.Body>
@@ -79,7 +113,9 @@ const ViewAllFiles = () => {
                 {/* <Card.Subtitle className="mb-2 text-muted">{file.type}</Card.Subtitle> */}
                 <Card.Text>
                   <p> {file.description}</p>
-                  <p><button onClick={(e) => handleDownload(e, file.fileId)}>Download File</button>  </p>
+                  <p>
+                    <button onClick={(e) => handleDownload(e, file.fileId)}>Download File</button>{' '}
+                  </p>
                 </Card.Text>
               </Card.Body>
               {/* <ListGroup variant="flush">
