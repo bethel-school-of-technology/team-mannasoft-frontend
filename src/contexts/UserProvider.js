@@ -13,57 +13,55 @@ export const UserProvider = (props) => {
     fetchData();
   }, []);
 
-  function createUser(user) {
-    //let user = { username, password };
+  async function createUser(username, password) {
+    let user = { username, password };
 
-    return axios.post(baseUrl, user).then(response => {return new Promise(resolve => resolve(response.data))})
+    const response = await axios.post(baseUrl, user);
+    return await new Promise(resolve => resolve(response.data));
     // const response = axios.post(baseUrl, user);
     // return new Promise((resolve) => resolve(response.data));
   }
 
-  function signInUser(username, password) {
+  async function signInUser(username, password) {
     let user = { username, password };
 
-    return axios.post(`${baseUrl}login`, user)
-    .then(response => {
-      localStorage.setItem('myTweetToken', response.data.token)
-      return new Promise(resolve => resolve(response.data))
-    })
+    const response = await axios.post(`${baseUrl}login`, user);
+    localStorage.setItem('myCoffeeToken', response.data.token);
+    return await new Promise(resolve => resolve(response.data));
     // const response = axios.post(`${baseUrl}login`, user);
     // localStorage.setItem('myUserToken', response.data.token);
     // return new Promise((resolve) => resolve(response.data));
   }
 
-  function getUser(userId, username, firstname, lastname, email, phoneNumber) {
+  async function getUser(userId, username, firstname, lastname, email, phoneNumber) {
     let profile = { username, firstname, lastname, email, phoneNumber }
     
-    return axios.get(baseUrl + user.userId, profile).then(response => setUser(response.data));
+    const response = await axios.get(baseUrl + userId, profile);
+    return setUser(response.data);
 }
 
-  function editUser(userId, username, email, phoneNumber) {
+  async function editUser(userId, username, email, phoneNumber) {
     let user = { username, email, phoneNumber };
 
     let myHeaders = {
-      Authorization: `Bearer ${localStorage.getItem('myTweetToken')}`
+      Authorization: `Bearer ${localStorage.getItem('myCoffeeToken')}`
     };
 
-    return axios.put(baseUrl + userId, user, { headers: myHeaders })
-    .then(response => {
-      getUser();
-      return new Promise(resolve => resolve(response.data));
-    })
+    const response = await axios.put(baseUrl + userId, user, { headers: myHeaders });
+    getUser();
+    return await new Promise(resolve => resolve(response.data));
   };
 
-  function deleteUser(userId) {
+  async function deleteUser(userId) {
     let myHeaders = {
-      Authorization: `Bearer ${localStorage.getItem('myTweetToken')}`
+      Authorization: `Bearer ${localStorage.getItem('myCoffeeToken')}`
     };
 
     return axios.delete(baseUrl + userId, { headers: myHeaders })
-    .then(response => {
-      getUser();
-      return new Promise(resolve => resolve(response.data))
-    });
+        .then(response => {
+            getUser();
+            return new Promise(resolve => resolve(response.data));
+        });
   }
 
   return (

@@ -34,7 +34,7 @@ const SignIn = () => {
     event.preventDefault();
     signInUser(username, password)
       .then(() => {
-        navigate('/displayprofile');
+        navigate('/viewallfiles');
       })
       .catch((error) => {
         console.log(error);

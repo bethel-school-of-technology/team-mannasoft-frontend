@@ -10,8 +10,6 @@ const EditProfile = () => {
     firstName: '',
     lastName: '',
     email: '',
-    firstName: '',
-    lastName: '',
     phoneNumber: '',
   });
 
@@ -32,7 +30,7 @@ const EditProfile = () => {
       .then((response) => {
         console.log(response);
         window.alert('Are you sure?')
-        // navigate('/profilepage/:userId');
+        navigate(`/displayProfile/${user.userId}`);
       })
       .catch((error) => {
         console.log(error);

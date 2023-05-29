@@ -25,8 +25,8 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/profilepage" element={<DisplayProfile />} />
-              <Route path="/editprofile" element={<EditProfile />} /> {/* Does not go to the right place */}
+              <Route path="/displayprofile" element={<DisplayProfile />} />
+              <Route path="/editprofile/:id" element={<EditProfile />} /> {/* Does not go to the right place */}
               <Route path="/uploadfiles" element={<UploadFiles />} />
               <Route path="/viewallfiles" element={<ViewAllFiles />} />
             </Routes>
