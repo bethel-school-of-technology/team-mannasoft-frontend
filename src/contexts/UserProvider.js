@@ -37,7 +37,7 @@ export const UserProvider = (props) => {
   function getUser(username, firstname, lastname, email, phoneNumber) {
     let profile = { username, firstname, lastname, email, phoneNumber }
     
-    return axios.get(baseUrl, profile).then(response => setUser(response.data));
+    return axios.get(baseUrl + userId, profile).then(response => setUser(response.data));
 }
 
   function editUser(userId, username, password, email, phoneNumber) {
