@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Card, ListGroup, Row, Col, Container } from 'react-bootstrap';
+import { Card, ListGroup, Row, Col, Container, Button } from 'react-bootstrap';
 
 // Placeholder data for files
 // const files = [
@@ -58,7 +58,7 @@ const ViewAllFiles = () => {
   {/* <a href={`http://localhost:3001/api/files/${file.fileId}`}>Download File</a> */ }
 
   const handleDownload = (e, id) => {
-    axios.get(`http://localhost:3001/api/files/${id}`, {
+    axios.get(`http://localhost:3001/api/files/download/${id}`, {
       headers: {
         "Authorization": `Bearer ${localStorage.getItem("myUserToken")}`
       }
@@ -79,7 +79,10 @@ const ViewAllFiles = () => {
                 {/* <Card.Subtitle className="mb-2 text-muted">{file.type}</Card.Subtitle> */}
                 <Card.Text>
                   <p> {file.description}</p>
-                  <p><button onClick={(e) => handleDownload(e, file.fileId)}>Download File</button>  </p>
+                  <p>
+                    {/* <button onClick={(e) => handleDownload(e, file.fileId)}>Download File</button> */}
+                    <Button href={'http://localhost:3001/api/files/download/' + file.storedName}>Download</Button>
+                  </p>
                 </Card.Text>
               </Card.Body>
               {/* <ListGroup variant="flush">
