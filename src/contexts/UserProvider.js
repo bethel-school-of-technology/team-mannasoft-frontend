@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import UserContext from './UserContext';
 
 export const UserProvider = (props) => {
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
+  const [user, setUser] = useState({ signedIn: false });
+
   const baseUrl = 'http://localhost:3001/api/users/';
 
   useEffect(() => {
@@ -28,6 +30,9 @@ export const UserProvider = (props) => {
 
     return axios.post(`${baseUrl}/login`, user).then((response) => {
       localStorage.setItem('myUserToken', response.data.token);
+
+      setUser({ signedIn: true });
+
       return new Promise((resolve) => resolve(response.data));
     });
     // const response = axios.post(`${baseUrl}/login`, user);

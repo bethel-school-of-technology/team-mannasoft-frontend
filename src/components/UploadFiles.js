@@ -1,57 +1,69 @@
 import React, { useState } from 'react';
-import axios from "axios";
-import "./FrontEnd.css";
+import axios from 'axios';
+import { Container, Form, Button } from 'react-bootstrap';
 
 const UploadFiles = () => {
-    const [upload, setUpload] = useState("")
-    const [description, setDescription] = useState("")
+  const [upload, setUpload] = useState('');
+  const [description, setDescription] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(upload)
-        const formData = new FormData();
-        formData.append("file", upload);
-        formData.append("description", description);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(upload);
+    const formData = new FormData();
+    formData.append('file', upload);
+    formData.append('description', description);
 
-        console.log(formData.get("description"));
+    console.log(formData.get('description'));
 
-        axios
-            .post("http://localhost:3001/api/files", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    "Authorization": `Bearer ${localStorage.getItem("myUserToken")}`
-                },
-            })
-            .then((response) => {
-                // handle the response
-                console.log(response);
-            })
-            .catch((error) => {
-                // handle errors
-                console.log(error);
-            });
-    }
+    axios
+      .post('http://localhost:3001/api/files', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
+        },
+      })
+      .then((response) => {
+        // handle the response
+        console.log(response);
+      })
+      .catch((error) => {
+        // handle errors
+        console.log(error);
+      });
+  };
 
-    const handleFileUpload = (e) => {
-        let file = e.target.files[0]
+  const handleFileUpload = (e) => {
+    let file = e.target.files[0];
 
-        setUpload(file)
-    }
-    return (
-        <div>
-            <form className='container' onSubmit={handleSubmit}>
-                <span>File Upload:</span>
-                <br />
-                <input type="file" onChange={handleFileUpload} />
-                <br />
-                <span>File Description:</span>
-                <br />
-                <input type="text" value={description} onChange={(e) => { setDescription(e.target.value) }} />
-                <br />
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    )
-}
+    setUpload(file);
+  };
 
-export default UploadFiles
+  return (
+    <div>
+      <Container>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>File Upload:</Form.Label>
+            <Form.Control type="file" onChange={handleFileUpload} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>File Description:</Form.Label>
+            <Form.Control
+              as="textarea"
+              type="text"
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </Container>
+    </div>
+  );
+};
+
+export default UploadFiles;
