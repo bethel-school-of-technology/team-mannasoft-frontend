@@ -14,14 +14,14 @@ const DisplayProfile = () => {
   });
 
   useEffect(() => {
-    axios
-      .get('/api/users')
-      .then((response) => {
-        setUser(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // axios
+    //   .get('/api/users')
+    //   .then((response) => {
+    //     setUser(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }, []);
 
   const handleUserChange = (user) => {

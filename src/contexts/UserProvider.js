@@ -10,7 +10,7 @@ export const UserProvider = (props) => {
 
   useEffect(() => {
     async function fetchData() {
-      getUser();
+      // getUser();
     }
     fetchData();
   }, []);
@@ -40,10 +40,10 @@ export const UserProvider = (props) => {
     // return new Promise((resolve) => resolve(response.data));
   }
 
-  function getUser(username, firstname, lastname, email, phoneNumber) {
+  function getUser(username, firstname, lastname, email, phoneNumber, id) {
     let profile = { username, firstname, lastname, email, phoneNumber };
 
-    return axios.get(baseUrl, profile).then((response) => setUser(response.data));
+    return axios.get(`${baseUrl}${id}`, profile).then((response) => setUser(response.data));
   }
 
   function editUser(userId, username, password, email, phoneNumber) {
@@ -54,7 +54,7 @@ export const UserProvider = (props) => {
     };
 
     return axios.put(baseUrl + userId, user, { headers: myHeaders }).then((response) => {
-      getUser();
+      // getUser();
       return new Promise((resolve) => resolve(response.data));
     });
   }
@@ -65,7 +65,7 @@ export const UserProvider = (props) => {
     };
 
     return axios.delete(baseUrl + userId, { headers: myHeaders }).then((response) => {
-      getUser();
+      // getUser();
       return new Promise((resolve) => resolve(response.data));
     });
   }
@@ -76,7 +76,7 @@ export const UserProvider = (props) => {
         user,
         createUser,
         signInUser,
-        getUser,
+        // getUser,
         editUser,
         deleteUser,
       }}
