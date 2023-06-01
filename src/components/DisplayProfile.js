@@ -16,6 +16,7 @@ const DisplayProfile = () => {
     phoneNumber: '',
   });
 
+
   let { getUser, deleteUser } = useContext(UserContext)
 
   useEffect(() => {
@@ -47,7 +48,6 @@ const DisplayProfile = () => {
           <br />
           {/* <button onClick={handleDeleteUser}>Delete User</button> */}
         </div>
-      
     );
 };
 

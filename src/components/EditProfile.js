@@ -35,7 +35,6 @@ const EditProfile = () => {
     event.preventDefault()
     editUser(user.userId, user.username, user.email, user.phoneNumber)
       .then(() => {
-        console.log(user.username)
         navigate('/displayprofile');
       })
       .catch((error) => {
@@ -48,6 +47,7 @@ const EditProfile = () => {
     <Form onSubmit={handleSubmit}>
       <h1>Edit Profile</h1>
       <br />
+
       <Form.Group className="custom-form" controlId="username">
         <Form.Label className="custom-label">Username</Form.Label>
         <Form.Control type="text" name="username" value={user.username} onChange={handleChange} placeholder="Username" className="edit-profile" />
