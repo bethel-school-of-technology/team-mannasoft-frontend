@@ -43,10 +43,12 @@ const EditProfile = () => {
     <Form onSubmit={handleSubmit}>
       <h1>Edit Profile</h1>
       <br />
+
       <Form.Group className="custom-form" controlId="username">
         <Form.Label className="custom-label">Username</Form.Label>
         <Form.Control type="text" name="username" value={user.username} onChange={handleChange} placeholder="Username" className="edit-profile" />
       </Form.Group>
+
       <Form.Group className="custom-form" controlId="firstName">
         <Form.Label className="custom-label">First Name</Form.Label>
         <Form.Control type="text" name="firstName" value={user.firstName} onChange={handleChange} placeholder="First Name" className="edit-profile" />

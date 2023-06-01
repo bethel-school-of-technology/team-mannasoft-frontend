@@ -31,18 +31,6 @@ const SignIn = () => {
       });
   }
 
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   signInUser(username, password)
-  //     .then(() => {
-  //       navigate('/displayprofile');
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       window.alert('Failed login');
-  //     });
-  // }
-
   return (
     <Form onSubmit={handleSubmit}>
       <h1>Sign In</h1>
