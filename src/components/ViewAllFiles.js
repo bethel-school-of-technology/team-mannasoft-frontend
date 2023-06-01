@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Card, Col, Form, Row } from 'react-bootstrap';
+import { Card, Col, Form, Row, Button } from 'react-bootstrap';
 
 // Placeholder data for files
 // const files = [
@@ -64,10 +64,13 @@ const ViewAllFiles = () => {
 
   const handleDownload = (e, id) => {
     axios
-      .get(`http://localhost:3001/api/files/${id}`, {
+      .get(`http://localhost:3001/api/files/download/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
         },
+      })
+      .then((response) => {
+        console.log(response.data);
       })
       .then((response) => {
         console.log(response.data);
@@ -114,7 +117,8 @@ const ViewAllFiles = () => {
                 <Card.Text>
                   <p> {file.description}</p>
                   <p>
-                    <button onClick={(e) => handleDownload(e, file.fileId)}>Download File</button>{' '}
+                    {/* <button onClick={(e) => handleDownload(e, file.fileId)}>Download File</button> */}
+                    <Button href={'http://localhost:3001/api/files/download/' + file.storedName}>Download</Button>
                   </p>
                 </Card.Text>
               </Card.Body>
