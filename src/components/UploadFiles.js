@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import "./FrontEnd.css";
+
 
 const UploadFiles = () => {
     const [upload, setUpload] = useState("")
