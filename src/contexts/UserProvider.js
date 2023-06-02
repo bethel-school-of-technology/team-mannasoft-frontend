@@ -45,26 +45,38 @@ export const UserProvider = (props) => {
     });
   }
 
-  // function deleteUser(userId) {
-  //   let myHeaders = {
-  //     Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
-  //   };
+  function signOutUser() {
+    let myHeaders = {
+      Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
+    };
 
-  //   return axios.delete(baseUrl + userId, { headers: myHeaders }).then((response) => {
-  //     getUser();
-  //     return new Promise((resolve) => resolve(response.data));
-  //   });
-  // }
+    return axios.post(baseUrl + 'signout', null, { headers: myHeaders }).then((response) => {
+      localStorage.removeItem('myUserToken', response.data.token);
+      setUser({ signedIn: false });
+      return new Promise((resolve) => resolve(response.data));
+    });
+  }
+
+  function deleteUser(userId) {
+    let myHeaders = {
+      Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
+    };
+
+    return axios.delete(baseUrl + userId, { headers: myHeaders }).then((response) => {
+      return new Promise((resolve) => resolve(response.data));
+    });
+  }
 
   return (
     <UserContext.Provider
       value={{
         user,
+        signOutUser,
         createUser,
         signInUser,
         getUser,
         editUser,
-        //deleteUser
+        deleteUser
       }}
     >
       {props.children}

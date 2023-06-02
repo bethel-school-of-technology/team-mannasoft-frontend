@@ -14,6 +14,7 @@ const DisplayProfile = () => {
     lastName: '',
     email: '',
     phoneNumber: '',
+
   });
 
 
@@ -27,13 +28,12 @@ const DisplayProfile = () => {
     fetch();
 }, [getUser, userId ]);
 
-  // Later if we have time
-
-  // function handleDeleteUser(userId) {
-  //   deleteUser(userId).then(() => {
-  //     navigate('/displayprofile');
-  //   })
-  // }
+  function handleDeleteUser(event) {
+    event.preventDefault()
+    deleteUser(user.userId).then(() => {
+      navigate('/');
+    })
+  }
 
     return (
         <div>
@@ -47,7 +47,7 @@ const DisplayProfile = () => {
           <p>Phone Number: {user.phoneNumber}</p>
           <Link to='/editprofile'>Edit User</Link>
           <br />
-          {/* <button onClick={handleDeleteUser}>Delete User</button> */}
+          <button onClick={handleDeleteUser}>Delete User</button>
         </div>
     );
 };
