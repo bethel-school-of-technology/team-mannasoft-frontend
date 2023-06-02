@@ -20,6 +20,7 @@ const DisplayProfile = () => {
   let { getUser, deleteUser } = useContext(UserContext)
 
   useEffect(() => {
+
     async function fetch() {
         await getUser(userId).then((userId) => setUser(userId));
     }

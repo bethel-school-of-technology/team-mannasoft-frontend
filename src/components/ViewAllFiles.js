@@ -43,6 +43,25 @@ const ViewAllFiles = () => {
       });
   };
 
+  const handleDelete = (e, id) => {
+    axios
+      .delete(`http://localhost:3001/api/files/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        const filesNew = files.filter((file) => {
+          return file.fileId !== id;
+        });
+        setFiles(filesNew)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  };
+
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -85,6 +104,7 @@ const ViewAllFiles = () => {
                   <p>
                     {/* <button onClick={(e) => handleDownload(e, file.fileId)}>Download File</button> */}
                     <Button href={'http://localhost:3001/api/files/download/' + file.storedName}>Download</Button>
+                    <Button onClick={(e) => handleDelete(e, file.fileId)}>Delete</Button>
                   </p>
                 </Card.Text>
               </Card.Body>
