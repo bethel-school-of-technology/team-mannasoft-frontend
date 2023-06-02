@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Form, Button } from 'react-bootstrap';
 
 const UploadFiles = () => {
+  let navigate = useNavigate();
   const [upload, setUpload] = useState('');
   const [description, setDescription] = useState('');
 
@@ -21,11 +22,12 @@ const UploadFiles = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
-        },
+        }
       })
       .then((response) => {
         // handle the response
         console.log(response);
+        navigate('/viewallfiles');
       })
       .catch((error) => {
         // handle errors
