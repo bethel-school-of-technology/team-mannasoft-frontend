@@ -63,7 +63,6 @@ const Header = () => {
   });
 
   return (
-    <div>
       <div className="nav">
         <ul>
           <li>
@@ -113,8 +112,8 @@ const Header = () => {
           </li>
         </ul>
       </div>
-    </div>
-  );
-};
+    );
+}
+
 
 export default Header;

@@ -26,7 +26,7 @@ function App() {
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/displayprofile" element={<DisplayProfile />} />
-              <Route path="/editprofile" element={<EditProfile />} /> {/* Does not go to the right place */}
+              <Route path="/editprofile" element={<EditProfile />} />
               <Route path="/uploadfiles" element={<UploadFiles />} />
               <Route path="/viewallfiles" element={<ViewAllFiles />} />
             </Routes>

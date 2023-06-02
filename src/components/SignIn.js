@@ -2,33 +2,22 @@ import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
-import axios from 'axios';
 
 const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  
   let { signInUser } = useContext(UserContext);
   let navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
-    axios
-      .post('http://localhost:3001/api/users/login', { username, password })
-      .then(() => {
-        signInUser(username, password)
-          .then(() => {
-            navigate('/displayprofile');
-          })
-          .catch((error) => {
+        signInUser(username, password).then(() => {
+          navigate(`/displayprofile`);
+        }).catch(error => {
             console.log(error);
             window.alert('Failed login');
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-        window.alert('Failed login');
-      });
+        });
   }
 
   return (
