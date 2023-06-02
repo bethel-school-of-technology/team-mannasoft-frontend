@@ -29,8 +29,8 @@ export const UserProvider = (props) => {
       Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
     };
 
-    return axios.get(baseUrl + userId, {headers: myHeaders}).then((response) => {
-      return new Promise(resolve => resolve(response.data));
+    return axios.get(baseUrl + userId, { headers: myHeaders }).then((response) => {
+      return new Promise((resolve) => resolve(response.data));
     });
   }
 
@@ -41,6 +41,18 @@ export const UserProvider = (props) => {
       Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
     };
     return axios.put(baseUrl + userId, user, { headers: myHeaders }).then((response) => {
+      return new Promise((resolve) => resolve(response.data));
+    });
+  }
+
+  function signOutUser() {
+    let myHeaders = {
+      Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
+    };
+
+    return axios.post(baseUrl + 'signout', null, { headers: myHeaders }).then((response) => {
+      localStorage.removeItem('myUserToken', response.data.token);
+      setUser({ signedIn: false });
       return new Promise((resolve) => resolve(response.data));
     });
   }
@@ -64,6 +76,7 @@ export const UserProvider = (props) => {
         signInUser,
         getUser,
         editUser,
+        signOutUser,
         //deleteUser
       }}
     >
@@ -71,4 +84,3 @@ export const UserProvider = (props) => {
     </UserContext.Provider>
   );
 };
-
