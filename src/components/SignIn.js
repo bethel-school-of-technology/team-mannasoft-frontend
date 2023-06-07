@@ -1,24 +1,36 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 
 const SignIn = () => {
+  const [verify, setVerify] = useState(null)
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
-  let { signInUser } = useContext(UserContext);
+  let { signInUser, verifyUser } = useContext(UserContext);
   let navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
-        signInUser(username, password).then(() => {
-          navigate(`/displayprofile`);
-        }).catch(error => {
-            console.log(error);
-            window.alert('Failed login');
-        });
+        signInUser(username, password)
+        .then(() => {
+          navigate(`/displayprofile`)
+          window.location.reload()
+        })
+        .catch(error => {
+          console.log(error);
+          window.alert('Failed login');
+      })
   }
+
+  useEffect(() => {
+    async function fetch() {
+        setVerify(await verifyUser())
+    }
+    fetch();
+}, []);
+
 
   return (
     <Form onSubmit={handleSubmit}>
