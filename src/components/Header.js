@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ReactComponent as LegaleaseLogo } from '../images/legaleaseLogo.svg';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import UserContext from '../contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
 
 // const Header = () => {
 //   const { user } = useContext(UserContext);
@@ -80,7 +79,6 @@ const Header = () => {
     fetch();
   }, [getUser, userId]);
 
-
   return (
     <div className="nav">
       <ul>
@@ -92,16 +90,10 @@ const Header = () => {
         <li>
           <Link to="/about">About</Link>
         </li>
-        <li>
-          <Link to="/about">Lorem ipsum</Link>
-        </li>
-        {/* <li>
-            <Link to="/displayprofile">View Profile</Link>
-          </li> */}
-        {/* <li>
-            <Link to="/editprofile">Edit Profile</Link>
-          </li> */}
+      </ul>
 
+      <ul className="nav-right">
+        {/*  START render when user is SIGNED IN*/}
         <NavDropdown title={`Hello ${user.firstName}`} id="basic-nav-dropdown">
           <NavDropdown.Item href="/displayprofile">View Profile</NavDropdown.Item>
           <NavDropdown.Item href="/uploadfiles">Upload Files</NavDropdown.Item>
@@ -109,18 +101,9 @@ const Header = () => {
           <NavDropdown.Divider />
           <NavDropdown.Item onClick={handleSignOut}>Sign Out</NavDropdown.Item>
         </NavDropdown>
+        {/* END render when user is SIGNED IN*/}
 
-        <li>
-          <Link to="/about">Lorem ipsum</Link>
-        </li>
-        {/* <li>
-            <Link to="/uploadfiles">Upload Files</Link>
-          </li>
-          <li>
-            <Link to="/viewallfiles">View All Files</Link>
-          </li> */}
-      </ul>
-      <ul className="nav-right">
+        {/* START no render when user is SIGNED OUT */}
         <li>
           <Link to="/signin">Sign In</Link>
         </li>
@@ -129,6 +112,7 @@ const Header = () => {
             <span className="signup-link">Sign Up</span>
           </Link>
         </li>
+        {/* END no render when user is SIGNED OUT */}
       </ul>
     </div>
   );
