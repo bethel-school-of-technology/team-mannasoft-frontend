@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Card, Col, Form, Row, Button } from 'react-bootstrap';
 
+// Different file types have assigned icons
+
 const ViewAllFiles = () => {
   const [files, setFiles] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -55,11 +57,11 @@ const ViewAllFiles = () => {
         const filesNew = files.filter((file) => {
           return file.fileId !== id;
         });
-        setFiles(filesNew)
+        setFiles(filesNew);
       })
       .catch((err) => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   };
 
   const handleSearch = (e) => {

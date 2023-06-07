@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 const DisplayProfile = () => {
   let { userId } = useParams();
   let navigate = useNavigate();
-  let { getUser, deleteUser, verifyUser } = useContext(UserContext)
-  const [verify, setVerify] = useState(null)
+  let { getUser, deleteUser, verifyUser } = useContext(UserContext);
+  const [verify, setVerify] = useState(null);
   const [user, setUser] = useState({
     userId: '',
     username: '',
@@ -16,46 +16,42 @@ const DisplayProfile = () => {
     lastName: '',
     email: '',
     phoneNumber: '',
-
   });
 
   useEffect(() => {
-
-    async function fetch() {
-        await getUser(userId).then((userId) => setUser(userId));
-        setVerify(await verifyUser())
+    async function fetchData() {
+      await getUser(userId).then((userData) => setUser(userData));
+      setVerify(await verifyUser());
     }
-    fetch();
-}, [getUser, userId ]);
+    fetchData();
+  }, [getUser, userId]);
 
   function handleDeleteUser(event) {
-    event.preventDefault()
+    event.preventDefault();
     deleteUser(user.userId).then(() => {
       navigate('/');
-    })
+    });
   }
 
-if (verify) {
+  if (!verify) {
+    return <h2>403 NOT SIGNED IN</h2>;
+  }
+
   return (
     <div>
       <h2>My Profile</h2>
-      <hr />
+      <br />
       <h3>My Profile Information:</h3>
       <p>Username: {user.username}</p>
       <p>First Name: {user.firstName}</p>
       <p>Last Name: {user.lastName}</p>
       <p>Email: {user.email}</p>
       <p>Phone Number: {user.phoneNumber}</p>
-      <Link to='/editprofile'>Edit User</Link>
+      <Link to="/editprofile">Edit User</Link>
       <br />
       <button onClick={handleDeleteUser}>Delete User</button>
     </div>
-);
-} else {
-  return (
-    <h2>403 NOT SIGNED IN</h2>
-);
-}
+  );
 };
 
 export default DisplayProfile;
