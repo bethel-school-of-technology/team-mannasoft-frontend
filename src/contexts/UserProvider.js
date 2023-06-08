@@ -4,8 +4,8 @@ import UserContext from './UserContext';
 export const UserProvider = (props) => {
   const baseUrl = 'http://localhost:3001/api/users/';
 
-  function createUser(username, password, firstName, lastName, email, phoneNumber) {
-    let user = { username, password, firstName, lastName, email, phoneNumber };
+  function createUser(username, password, firstName, lastName, email, phoneNumber, streetName, city, state, country) {
+    let user = { username, password, firstName, lastName, email, phoneNumber, streetName, city, state, country};
 
     return axios.post(baseUrl, user).then((response) => {
       return new Promise((resolve) => resolve(response.data));
@@ -31,8 +31,8 @@ export const UserProvider = (props) => {
     });
   }
 
-  function editUser(userId, username, email, phoneNumber) {
-    let user = { username, email, phoneNumber };
+  function editUser(userId, username, email, phoneNumber, bank, license, socialSecurityNumber, birthCertificate, passportNumber) {
+    let user = { username, email, phoneNumber, bank,  license, socialSecurityNumber, birthCertificate, passportNumber };
 
     let myHeaders = {
       Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
