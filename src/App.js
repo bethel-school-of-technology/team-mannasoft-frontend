@@ -19,18 +19,18 @@ function App() {
     <UserProvider>
       <BrowserRouter>
         <Header /> {/* Apply header class */}
-        <Container>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/displayprofile" element={<DisplayProfile />} />
-            <Route path="/editprofile" element={<EditProfile />} />
-            <Route path="/uploadfiles" element={<UploadFiles />} />
-            <Route path="/viewallfiles" element={<ViewAllFiles />} />
-          </Routes>
-        </Container>
+          <Container>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/displayprofile" element={<DisplayProfile />} />
+              <Route path="/editprofile" element={<EditProfile />} />
+              <Route path="/uploadfiles" element={<UploadFiles />} />
+              <Route path="/viewallfiles" element={<ViewAllFiles />} />
+            </Routes>
+          </Container>
         <Footer /> {/* Apply footer class */}
       </BrowserRouter>
     </UserProvider>
