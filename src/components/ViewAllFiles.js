@@ -15,32 +15,23 @@ const ViewAllFiles = () => {
 
   useEffect(() => {
     async function fetch() {
+      axios
+        .get('http://localhost:3001/api/files', {headers: {Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,},})
+        .then((response) => {console.log(response);setFiles(response.data);})
+        .catch((error) => {console.log(error);
+        });
       setVerify(await verifyUser())
   }
   const token = localStorage.getItem('myUserToken');
   if (token) {
     fetch();
   }
-    axios
-      .get('http://localhost:3001/api/files', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
-        },
-      })
-      .then((response) => {
-        // handle the response
-        console.log(response);
-        setFiles(response.data);
-      })
-      .catch((error) => {
-        // handle errors
-        console.log(error);
-      });
   }, []);
   {
     /* <a href={`http://localhost:3001/api/files/${file.fileId}`}>Download File</a> */
   }
-
+  // handle errors
+// handle the response
   const handleDownload = (e, id) => {
     axios
       .get(`http://localhost:3001/api/files/download/${id}`, {
@@ -98,6 +89,7 @@ const ViewAllFiles = () => {
   if (verify) {
     return (
       <div>
+      <Button href='http://localhost:3000/uploadfiles'>Upload File</Button>
       <Form.Control type="text" placeholder="Search by file name" value={searchQuery} onChange={handleSearch} />
 
       <Form.Select value={sortOrder} onChange={handleSort}>
