@@ -11,13 +11,17 @@ const SignUp = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [streetName, setStreetName] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [country, setCountry] = useState('');
 
   let { createUser } = useContext(UserContext);
   let navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
-    createUser(username, password, firstName, lastName, email, phoneNumber)
+    createUser(username, password, firstName, lastName, email, phoneNumber, streetName, city, state, country)
       .then(() => {
         navigate('/signin');
       })
@@ -54,6 +58,22 @@ const SignUp = () => {
       <Form.Group className="custom-form" controlId="phoneNumber">
         <Form.Label className="custom-label">Phone Number</Form.Label>
         <Form.Control type="tel" placeholder="Enter phone number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+      </Form.Group>
+      <Form.Group className="custom-form" controlId="streetName">
+        <Form.Label className="custom-label">Address</Form.Label>
+        <Form.Control type="text" placeholder="Enter Address" value={streetName} onChange={(e) => setStreetName(e.target.value)} />
+      </Form.Group>
+      <Form.Group className="custom-form" controlId="city">
+        <Form.Label className="custom-label">City</Form.Label>
+        <Form.Control type="text" placeholder="Enter City" value={city} onChange={(e) => setCity(e.target.value)} />
+      </Form.Group>
+      <Form.Group className="custom-form" controlId="state">
+        <Form.Label className="custom-label">State</Form.Label>
+        <Form.Control type="text" placeholder="Enter State" value={state} onChange={(e) => setState(e.target.value)} />
+      </Form.Group>
+      <Form.Group className="custom-form" controlId="country">
+        <Form.Label className="custom-label">Country</Form.Label>
+        <Form.Control type="text" placeholder="Enter Country" value={country} onChange={(e) => setCountry(e.target.value)} />
       </Form.Group>
       <Button type="submit">Sign Up</Button>
     </Form>
