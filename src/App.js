@@ -12,14 +12,14 @@ import About from './components/About';
 import DisplayProfile from './components/DisplayProfile';
 import { UserProvider } from './contexts/UserProvider';
 import './styles/global.css'; // Import the App.css file
+import { Container } from 'react-bootstrap';
 
 function App() {
   return (
     <UserProvider>
-      <div>
-        <BrowserRouter>
-          <Header /> {/* Apply header class */}
-          <div className="container">
+      <BrowserRouter>
+        <Header /> {/* Apply header class */}
+          <Container>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -30,10 +30,9 @@ function App() {
               <Route path="/uploadfiles" element={<UploadFiles />} />
               <Route path="/viewallfiles" element={<ViewAllFiles />} />
             </Routes>
-          </div>
-          <Footer /> {/* Apply footer class */}
-        </BrowserRouter>
-      </div>
+          </Container>
+        <Footer /> {/* Apply footer class */}
+      </BrowserRouter>
     </UserProvider>
   );
 }

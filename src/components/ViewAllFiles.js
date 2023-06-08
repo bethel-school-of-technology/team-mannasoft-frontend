@@ -1,13 +1,24 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Card, Col, Form, Row, Button } from 'react-bootstrap';
+import UserContext from '../contexts/UserContext';
 
 const ViewAllFiles = () => {
   const [files, setFiles] = useState([]);
+  const [verify, setVerify] = useState(null)
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
 
+  let { verifyUser } = useContext(UserContext);
+
   useEffect(() => {
+    async function fetch() {
+      setVerify(await verifyUser())
+  }
+  const token = localStorage.getItem('myUserToken');
+  if (token) {
+    fetch();
+  }
     axios
       .get('http://localhost:3001/api/files', {
         headers: {
@@ -82,8 +93,9 @@ const ViewAllFiles = () => {
 
   const filteredFiles = sortedFiles.filter((file) => file.fileName.toLowerCase().includes(searchQuery.toLowerCase()));
 
-  return (
-    <div>
+  if (verify) {
+    return (
+      <div>
       <Form.Control type="text" placeholder="Search by file name" value={searchQuery} onChange={handleSearch} />
 
       <Form.Select value={sortOrder} onChange={handleSort}>
@@ -118,7 +130,12 @@ const ViewAllFiles = () => {
         ))}
       </Row>
     </div>
-  );
+    );
+  } else {
+    return (
+      <h2>403 NOT SIGNED IN</h2>
+    )
+  }
 };
 
 export default ViewAllFiles;

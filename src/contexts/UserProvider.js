@@ -59,6 +59,7 @@ export const UserProvider = (props) => {
     };
 
     return axios.delete(baseUrl + userId, { headers: myHeaders }).then((response) => {
+      localStorage.removeItem('myUserToken', response.data.token);
       return new Promise((resolve) => resolve(response.data));
     });
   }
