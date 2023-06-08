@@ -6,7 +6,8 @@ import { useParams } from 'react-router-dom';
 import '../styles/global.css';
 
 const EditProfile = () => {
-  let { editUser, getUser } = useContext(UserContext);
+  const [verify, setVerify] = useState(null)
+  let { editUser, getUser, verifyUser } = useContext(UserContext);
   let { userId } = useParams();
   let navigate = useNavigate();
 
@@ -28,6 +29,7 @@ const EditProfile = () => {
   useEffect(() => {
     async function fetch() {
         await getUser(userId).then((userId) => setUser(userId));
+        setVerify(await verifyUser())
     }
     fetch();
 }, [getUser, userId ]);
@@ -52,6 +54,7 @@ const EditProfile = () => {
       });
 };
 
+if(verify) {
   return (
     <Form onSubmit={handleSubmit}>
       <h1>Edit Profile</h1>
@@ -101,7 +104,12 @@ const EditProfile = () => {
         Save Changes
       </Button>
     </Form>
-  );
+  )
+} else {
+  return (
+    <h2>403 NOT SIGNED IN</h2>
+  )
+}
 }
 
 export default EditProfile;

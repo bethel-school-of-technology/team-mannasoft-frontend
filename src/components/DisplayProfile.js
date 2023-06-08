@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 const DisplayProfile = () => {
   let { userId } = useParams();
   let navigate = useNavigate();
+  let { getUser, deleteUser, verifyUser } = useContext(UserContext);
+  const [verify, setVerify] = useState(null);
   const [user, setUser] = useState({
     userId: '',
     username: '',
@@ -25,26 +27,28 @@ const DisplayProfile = () => {
     passport: '',
   });
 
-
-  let { getUser, deleteUser } = useContext(UserContext)
-
   useEffect(() => {
-
     async function fetch() {
         await getUser(userId).then((userId) => setUser(userId));
+        setVerify(await verifyUser())
     }
-    fetch();
+    const token = localStorage.getItem('myUserToken');
+    if (token) {
+      fetch();
+    }
 }, [getUser, userId ]);
 
   function handleDeleteUser(event) {
-    event.preventDefault()
+    event.preventDefault();
     deleteUser(user.userId).then(() => {
       navigate('/');
+      window.location.reload()
     })
   }
 
+  if (verify) {
     return (
-        <div>
+      <div>
           <h2>My Profile</h2>
           <hr />
           <h3>My Profile Information:</h3>
@@ -64,6 +68,11 @@ const DisplayProfile = () => {
           <button onClick={handleDeleteUser}>Delete User</button>
         </div>
     );
+  } else {
+    return (
+      <h2>403 NOT SIGNED IN</h2>
+    );
+  };
 };
 
 export default DisplayProfile;

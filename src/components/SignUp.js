@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import '../styles/global.css';
 
 const SignUp = () => {
+  const [verify, setVerify] = useState(null)
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -16,8 +17,19 @@ const SignUp = () => {
   const [state, setState] = useState('');
   const [country, setCountry] = useState('');
 
-  let { createUser } = useContext(UserContext);
+  let { createUser, verifyUser } = useContext(UserContext);
   let navigate = useNavigate();
+
+  useEffect(() => {
+
+    async function fetch() {
+        setVerify(await verifyUser())
+    }
+    const token = localStorage.getItem('myUserToken');
+    if (token) {
+      fetch();
+    }
+}, []);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -30,7 +42,11 @@ const SignUp = () => {
         window.alert('Failed registration: error creating user');
       });
   }
-
+if (verify) {
+  return (
+    <h2>You are already signed in</h2>
+  )
+} else {
   return (
     <Form onSubmit={handleSubmit}>
       <h1>Sign Up</h1>
@@ -78,6 +94,7 @@ const SignUp = () => {
       <Button type="submit">Sign Up</Button>
     </Form>
   );
+}
 };
 
 export default SignUp;

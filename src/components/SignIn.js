@@ -1,25 +1,46 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 
 const SignIn = () => {
+  const [verify, setVerify] = useState(null)
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
-  let { signInUser } = useContext(UserContext);
+  let { signInUser, verifyUser } = useContext(UserContext);
   let navigate = useNavigate();
+
+  useEffect(() => {
+
+    async function fetch() {
+        setVerify(await verifyUser())
+    }
+    const token = localStorage.getItem('myUserToken');
+    if (token) {
+      fetch();
+    }
+}, []);
 
   function handleSubmit(event) {
     event.preventDefault();
-        signInUser(username, password).then(() => {
-          navigate(`/displayprofile`);
-        }).catch(error => {
-            console.log(error);
-            window.alert('Failed login');
-        });
+        signInUser(username, password)
+        .then(() => {
+          navigate(`/displayprofile`)
+          window.location.reload()
+        })
+        .catch(error => {
+          console.log(error);
+          window.alert('Failed login');
+      })
   }
 
+
+if (verify) {
+  return (
+    <h2>You are already signed in</h2>
+  );
+} else {
   return (
     <Form onSubmit={handleSubmit}>
       <h1>Sign In</h1>
@@ -37,6 +58,7 @@ const SignIn = () => {
       </Button>
     </Form>
   );
+}
 };
 
 export default SignIn;
