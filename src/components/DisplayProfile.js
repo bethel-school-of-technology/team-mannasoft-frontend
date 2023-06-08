@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 const DisplayProfile = () => {
   let { userId } = useParams();
   let navigate = useNavigate();
-  let { getUser, deleteUser, verifyUser } = useContext(UserContext)
-  const [verify, setVerify] = useState(null)
+  let { getUser, deleteUser, verifyUser } = useContext(UserContext);
+  const [verify, setVerify] = useState(null);
   const [user, setUser] = useState({
     userId: '',
     username: '',
@@ -30,7 +30,7 @@ const DisplayProfile = () => {
 }, [getUser, userId ]);
 
   function handleDeleteUser(event) {
-    event.preventDefault()
+    event.preventDefault();
     deleteUser(user.userId).then(() => {
       navigate('/');
       window.location.reload()

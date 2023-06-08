@@ -6,7 +6,7 @@ import UserContext from '../contexts/UserContext';
 
 const Header = () => {
   let navigate = useNavigate();
-  const [verify, setVerify] = useState(null)
+  const [verify, setVerify] = useState(null);
   let { userId } = useParams();
 
   const [user, setUser] = useState({
@@ -16,11 +16,11 @@ const Header = () => {
   let { getUser, signOutUser, verifyUser } = useContext(UserContext);
 
   const handleSignOut = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     signOutUser()
       .then(() => {
         navigate('/');
-        window.location.reload()
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
@@ -31,7 +31,7 @@ const Header = () => {
   useEffect(() => {
     async function fetch() {
       await getUser(userId).then((userId) => setUser(userId));
-      setVerify(await verifyUser())
+      setVerify(await verifyUser());
     }
 
     const token = localStorage.getItem('myUserToken');
@@ -40,9 +40,10 @@ const Header = () => {
     }
   }, [getUser, userId]);
 
-if (verify) {
-  return (
-    <div className="nav">
+  if (verify) {
+    /*  START render when user is SIGNED IN*/
+    return (
+      <div className="nav">
         <ul>
           <li>
             <Link to="/">
@@ -63,34 +64,38 @@ if (verify) {
           </NavDropdown>
         </ul>
       </div>
-  );
-} else {
-  return (
-    <div className="nav">
-      <ul>
-        <li>
-          <Link to="/">
-            <LegaleaseLogo className="logo" />
-          </Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-      </ul>
+    );
+    /*  END render when user is SIGNED IN*/
 
-      <ul className="nav-right">
-        <li>
-          <Link to="/signin">Sign In</Link>
-        </li>
-        <li>
-          <Link className="nav-signup" to="/signup">
-            <span className="signup-link">Sign Up</span>
-          </Link>
-        </li>
-      </ul>
-    </div>
-  );
-}
+    /* START no render when user is SIGNED OUT */
+  } else {
+    return (
+      <div className="nav">
+        <ul>
+          <li>
+            <Link to="/">
+              <LegaleaseLogo className="logo" />
+            </Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+        </ul>
+
+        <ul className="nav-right">
+          <li>
+            <Link to="/signin">Sign In</Link>
+          </li>
+          <li>
+            <Link className="nav-signup" to="/signup">
+              <span className="signup-link">Sign Up</span>
+            </Link>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+  /* END no render when user is SIGNED OUT */
 };
 
 export default Header;

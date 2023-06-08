@@ -3,6 +3,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Card, Col, Form, Row, Button } from 'react-bootstrap';
 import UserContext from '../contexts/UserContext';
 
+// Different file types have assigned icons
+
 const ViewAllFiles = () => {
   const [files, setFiles] = useState([]);
   const [verify, setVerify] = useState(null)
@@ -66,11 +68,11 @@ const ViewAllFiles = () => {
         const filesNew = files.filter((file) => {
           return file.fileId !== id;
         });
-        setFiles(filesNew)
+        setFiles(filesNew);
       })
       .catch((err) => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   };
 
   const handleSearch = (e) => {
