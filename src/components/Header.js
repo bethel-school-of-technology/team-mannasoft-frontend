@@ -33,7 +33,11 @@ const Header = () => {
       await getUser(userId).then((userId) => setUser(userId));
       setVerify(await verifyUser());
     }
-    fetch();
+
+    const token = localStorage.getItem('myUserToken');
+    if (token) {
+      fetch();
+    }
   }, [getUser, userId]);
 
   if (verify) {

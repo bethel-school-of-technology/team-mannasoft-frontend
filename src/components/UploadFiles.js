@@ -1,13 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Form, Button, Toast } from 'react-bootstrap';
+import UserContext from '../contexts/UserContext';
 
 const UploadFiles = () => {
   let navigate = useNavigate();
+  const [verify, setVerify] = useState(null)
   const [upload, setUpload] = useState('');
   const [description, setDescription] = useState('');
   const [show, setShow] = useState(false);
+
+  let { verifyUser } = useContext(UserContext);
+
+  useEffect(() => {
+
+    async function fetch() {
+        setVerify(await verifyUser())
+    }
+    const token = localStorage.getItem('myUserToken');
+    if (token) {
+      fetch();
+    }
+}, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,7 +59,7 @@ const UploadFiles = () => {
 
     setUpload(file);
   };
-
+if (verify) {
   return (
     <div>
       <Container>
@@ -86,6 +101,11 @@ const UploadFiles = () => {
       </Container>
     </div>
   );
+} else {
+  return(
+    <h2>403 NOT SIGNED IN</h2>
+  )
+}
 };
 
 export default UploadFiles;

@@ -11,6 +11,17 @@ const SignIn = () => {
   let { signInUser, verifyUser } = useContext(UserContext);
   let navigate = useNavigate();
 
+  useEffect(() => {
+
+    async function fetch() {
+        setVerify(await verifyUser())
+    }
+    const token = localStorage.getItem('myUserToken');
+    if (token) {
+      fetch();
+    }
+}, []);
+
   function handleSubmit(event) {
     event.preventDefault();
         signInUser(username, password)
@@ -24,14 +35,12 @@ const SignIn = () => {
       })
   }
 
-  useEffect(() => {
-    async function fetch() {
-        setVerify(await verifyUser())
-    }
-    fetch();
-}, []);
 
-
+if (verify) {
+  return (
+    <h2>You are already signed in</h2>
+  );
+} else {
   return (
     <Form onSubmit={handleSubmit}>
       <h1>Sign In</h1>
@@ -49,6 +58,7 @@ const SignIn = () => {
       </Button>
     </Form>
   );
+}
 };
 
 export default SignIn;
