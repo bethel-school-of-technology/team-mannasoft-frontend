@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Toast } from 'react-bootstrap';
 import UserContext from '../contexts/UserContext';
 
 const UploadFiles = () => {
@@ -9,6 +9,7 @@ const UploadFiles = () => {
   const [verify, setVerify] = useState(null)
   const [upload, setUpload] = useState('');
   const [description, setDescription] = useState('');
+  const [show, setShow] = useState(false);
 
   let { verifyUser } = useContext(UserContext);
 
@@ -41,8 +42,11 @@ const UploadFiles = () => {
       })
       .then((response) => {
         // handle the response
-        console.log(response);
-        navigate('/viewallfiles');
+        if (response.data.file === "file already exists") {
+          setShow(true)
+        } else {
+          navigate('/viewallfiles');
+        }
       })
       .catch((error) => {
         // handle errors
@@ -59,6 +63,21 @@ if (verify) {
   return (
     <div>
       <Container>
+        {show &&
+          <div className="mb-5 d-flex justify-content-center">
+            <Toast onClose={() => setShow(false)} show={show} delay={3000}>
+              <Toast.Header>
+                <img
+                  src="holder.js/20x20?text=%20"
+                  className="rounded me-2"
+                  alt=""
+                />
+                <strong className="me-auto">Error</strong>
+                {/* <small>11 mins ago</small> */}
+              </Toast.Header>
+              <Toast.Body>Duplicate File Found!</Toast.Body>
+            </Toast>
+          </div>}
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>File Upload:</Form.Label>
