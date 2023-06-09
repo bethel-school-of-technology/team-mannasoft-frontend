@@ -15,15 +15,6 @@ const EditProfile = () => {
     username: '',
     email: '',
     phoneNumber: '',
-    address: '',
-    city: '',
-    state: '',
-    country: '',
-    bank: '',
-    license: '',
-    socialSecurityNumber: '',
-    birthCertificate: '',
-    passportNumber: '',
   });
 
   useEffect(() => {
@@ -44,7 +35,7 @@ const EditProfile = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    editUser(user.userId, user.username, user.email, user.phoneNumber, user.bank, user.license, user.socialSecurityNumber, user.birthCertificate, user.passportNumber)
+    editUser(user.userId, user.username, user.email, user.phoneNumber)
       .then(() => {
         navigate('/displayprofile');
       })
@@ -67,37 +58,12 @@ if(verify) {
 
       <Form.Group className="custom-form" controlId="email">
         <Form.Label className="custom-label">Email</Form.Label>
-        <Form.Control type="email" name="email" value={user.email} onChange={handleChange} placeholder="Email" className="edit-profile" />
+        <Form.Control type="text" name="email" value={user.email} onChange={handleChange} placeholder="Email" className="edit-profile" />
       </Form.Group>
 
       <Form.Group className="custom-form" controlId="phoneNumber">
         <Form.Label className="custom-label">Phone Number</Form.Label>
-        <Form.Control type="tel" name="phoneNumber" value={user.phoneNumber} onChange={handleChange} placeholder="888-888-8888" className="edit-profile" />
-      </Form.Group>
-
-      <Form.Group className="custom-form" controlId="bank">
-        <Form.Label className="custom-label">Bank Number</Form.Label>
-        <Form.Control type="text" name="bank" value={user.bank} onChange={handleChange} placeholder="01234567890" className="edit-profile" />
-      </Form.Group>
-
-      <Form.Group className="custom-form" controlId="license">
-        <Form.Label className="custom-label">License Number</Form.Label>
-        <Form.Control type="text" name="license" value={user.license} onChange={handleChange} placeholder="a123456789000" className="edit-profile" />
-      </Form.Group>
-
-      <Form.Group className="custom-form" controlId="social">
-        <Form.Label className="custom-label">Social Security Number</Form.Label>
-        <Form.Control type="text" name="social" value={user.social} onChange={handleChange} placeholder="123-456-789" className="edit-profile" />
-      </Form.Group>
-
-      <Form.Group className="custom-form" controlId="birth">
-        <Form.Label className="custom-label">Birth Certificate</Form.Label>
-          <Form.Control type="text" name="birth" value={user.birth} onChange={handleChange} placeholder="111-1111 1111111" className="edit-profile" />
-      </Form.Group>
-
-      <Form.Group className="custom-form" controlId="passport">
-        <Form.Label className="custom-label">Passport Number</Form.Label>
-        <Form.Control type="text" name="passport" value={user.passport} onChange={handleChange} placeholder="12345678" className="edit-profile" />
+        <Form.Control type="text" name="phoneNumber" value={user.phoneNumber} onChange={handleChange} placeholder="888-888-8888" className="edit-profile" />
       </Form.Group>
 
       <Button type="submit" className="custom-button">
