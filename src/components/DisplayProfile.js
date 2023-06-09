@@ -16,15 +16,6 @@ const DisplayProfile = () => {
     lastName: '',
     email: '',
     phoneNumber: '',
-    address: '',
-    city: '',
-    state: '',
-    country: '',
-    bank: '',
-    license: '',
-    social: '',
-    birth: '',
-    passport: '',
   });
 
   useEffect(() => {
@@ -49,24 +40,18 @@ const DisplayProfile = () => {
   if (verify) {
     return (
       <div>
-          <h2>My Profile</h2>
-          <hr />
-          <h3>My Profile Information:</h3>
-          <p>Username: {user.username}</p>
-          <p>First Name: {user.firstName}</p>
-          <p>Last Name: {user.lastName}</p>
-          <p>Email: {user.email}</p>
-          <p>Phone Number: {user.phoneNumber}</p>
-          <p>Address: {user.streetName}, {user.city} {user.state}, {user.country}</p>
-          <p>Bank Info: {user.bank}</p>
-          <p>Drivers License: {user.license}</p>
-          <p>Social Security: {user.social}</p>
-          <p>Birth Certificate: {user.birth}</p>
-          <p>Passport: {user.passport}</p>
-          <Link to='/editprofile'>Edit User</Link>
-          <br />
-          <button onClick={handleDeleteUser}>Delete User</button>
-        </div>
+        <h2>My Profile</h2>
+        <br />
+        <h3>My Profile Information:</h3>
+        <p>Username: {user.username}</p>
+        <p>First Name: {user.firstName}</p>
+        <p>Last Name: {user.lastName}</p>
+        <p>Email: {user.email}</p>
+        <p>Phone Number: {user.phoneNumber}</p>
+        <Link to="/editprofile">Edit User</Link>
+        <br />
+        <button onClick={handleDeleteUser}>Delete User</button>
+      </div>
     );
   } else {
     return (
