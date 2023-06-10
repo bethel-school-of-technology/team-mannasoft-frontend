@@ -6,7 +6,7 @@ import UserContext from '../contexts/UserContext';
 
 const UploadFiles = () => {
   let navigate = useNavigate();
-  const [verify, setVerify] = useState(null)
+  const [verify, setVerify] = useState(null);
   const [upload, setUpload] = useState('');
   const [description, setDescription] = useState('');
   const [show, setShow] = useState(false);
@@ -14,15 +14,14 @@ const UploadFiles = () => {
   let { verifyUser } = useContext(UserContext);
 
   useEffect(() => {
-
     async function fetch() {
-        setVerify(await verifyUser())
+      setVerify(await verifyUser());
     }
     const token = localStorage.getItem('myUserToken');
     if (token) {
       fetch();
     }
-}, []);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,12 +37,12 @@ const UploadFiles = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
-        }
+        },
       })
       .then((response) => {
         // handle the response
-        if (response.data.file === "file already exists") {
-          setShow(true)
+        if (response.data.file === 'file already exists') {
+          setShow(true);
         } else {
           navigate('/viewallfiles');
         }
@@ -59,33 +58,33 @@ const UploadFiles = () => {
 
     setUpload(file);
   };
-if (verify) {
-  return (
-    <div>
-      <Container>
-        {show &&
+  if (verify) {
+    return (
+      <Container className="page-container">
+        <h1 className="display-5" style={{ paddingBottom: '20px' }}>
+          Upload Files
+        </h1>
+        {show && (
           <div className="mb-5 d-flex justify-content-center">
             <Toast onClose={() => setShow(false)} show={show} delay={3000}>
               <Toast.Header>
-                <img
-                  src="holder.js/20x20?text=%20"
-                  className="rounded me-2"
-                  alt=""
-                />
+                <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
                 <strong className="me-auto">Error</strong>
                 {/* <small>11 mins ago</small> */}
               </Toast.Header>
               <Toast.Body>Duplicate File Found!</Toast.Body>
             </Toast>
-          </div>}
+          </div>
+        )}
         <Form onSubmit={handleSubmit}>
           <Form.Group>
-            <Form.Label>File Upload:</Form.Label>
+            {/* <Form.Label>File Upload:</Form.Label> */}
             <Form.Control type="file" onChange={handleFileUpload} />
           </Form.Group>
           <Form.Group>
-            <Form.Label>File Description:</Form.Label>
+            {/* <Form.Label>File Description:</Form.Label> */}
             <Form.Control
+              placeholder="File Description"
               as="textarea"
               type="text"
               value={description}
@@ -94,18 +93,20 @@ if (verify) {
               }}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
+          <div style={{ paddingTop: '20px' }}>
+            <Button variant="secondary" href="/displayprofile">
+              Back
+            </Button>
+            <Button variant="primary" type="submit" style={{ marginLeft: '10px' }}>
+              Submit
+            </Button>
+          </div>
         </Form>
       </Container>
-    </div>
-  );
-} else {
-  return(
-    <h2>403 NOT SIGNED IN</h2>
-  )
-}
+    );
+  } else {
+    return <h2>403 NOT SIGNED IN</h2>;
+  }
 };
 
 export default UploadFiles;
