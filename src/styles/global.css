@@ -93,6 +93,31 @@ h5 {
   font-size: 16px !important;
 }
 
+.rating {
+  text-align: center;
+}
+
+.rating-comment {
+  font-family: 'Space Mono', monospace !important;
+  font-weight: 700;
+  /* font-style: italic; */
+  font-size: 2rem;
+}
+
+.rating-comment span {
+  font-family: 'Space Mono', monospace !important;
+  font-weight: 700;
+  /* font-style: italic; */
+  font-size: 4rem;
+  hanging-punctuation: first;
+}
+
+.rating-name {
+  /* text-transform: uppercase; */
+  font-weight: 500;
+  padding-top: 12px;
+}
+
 /* Buttons */
 
 .btn-primary {
