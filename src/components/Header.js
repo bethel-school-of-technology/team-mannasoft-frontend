@@ -2,12 +2,15 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ReactComponent as LegaleaseLogo } from '../images/legaleaseLogo.svg';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import useWindowDimensions from '../utils/useWindowDimensions';
+import '../styles/Header.css';
 import UserContext from '../contexts/UserContext';
 
 const Header = () => {
   let navigate = useNavigate();
   const [verify, setVerify] = useState(null);
   let { userId } = useParams();
+  const { width } = useWindowDimensions();
 
   const [user, setUser] = useState({
     firstName: '',
@@ -41,7 +44,7 @@ const Header = () => {
   }, [getUser, userId]);
 
   if (verify) {
-    /*  START render when user is SIGNED IN*/
+    /* START render when user is SIGNED IN */
     return (
       <div className="nav">
         <ul>
@@ -50,22 +53,26 @@ const Header = () => {
               <LegaleaseLogo className="logo" />
             </Link>
           </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
+          {width > 575 && (
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          )}
         </ul>
         <ul className="nav-right">
-          <NavDropdown title={`Hello ${user.firstName}`} id="basic-nav-dropdown">
-            <NavDropdown.Item href="/displayprofile">View Profile</NavDropdown.Item>
-            <NavDropdown.Item href="/uploadfiles">Upload Files</NavDropdown.Item>
-            <NavDropdown.Item href="/viewallfiles">View All Files</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item onClick={handleSignOut}>Sign Out</NavDropdown.Item>
-          </NavDropdown>
+          <li>
+            <NavDropdown title={`Profile`} id="basic-nav-dropdown" styles={{ padding: '0' }}>
+              <NavDropdown.Item href="/displayprofile">View Profile</NavDropdown.Item>
+              <NavDropdown.Item href="/uploadfiles">Upload Files</NavDropdown.Item>
+              <NavDropdown.Item href="/viewallfiles">View All Files</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={handleSignOut}>Sign Out</NavDropdown.Item>
+            </NavDropdown>
+          </li>
         </ul>
       </div>
     );
-    /*  END render when user is SIGNED IN*/
+    /* END render when user is SIGNED IN */
 
     /* START no render when user is SIGNED OUT */
   } else {
@@ -77,9 +84,11 @@ const Header = () => {
               <LegaleaseLogo className="logo" />
             </Link>
           </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
+          {width > 575 && (
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          )}
         </ul>
 
         <ul className="nav-right">
