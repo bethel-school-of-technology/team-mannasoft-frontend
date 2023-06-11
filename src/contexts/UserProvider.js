@@ -53,12 +53,15 @@ export const UserProvider = (props) => {
     });
   }
 
-  function deleteUser(userId) {
+  function deleteUser(userId, password) {
+    let user = {password};
+    console.log(user)
+
     let myHeaders = {
       Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
     };
 
-    return axios.delete(baseUrl + userId, { headers: myHeaders }).then((response) => {
+      return axios.delete(baseUrl + userId, user, { headers: myHeaders }).then((response) => {
       localStorage.removeItem('myUserToken', response.data.token);
       return new Promise((resolve) => resolve(response.data));
     });

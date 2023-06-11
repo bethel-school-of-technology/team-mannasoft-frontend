@@ -14,6 +14,7 @@ const ViewAllFiles = () => {
   let { verifyUser } = useContext(UserContext);
 
   useEffect(() => {
+
     async function fetchFiles() {
       try {
         const response = await axios.get('http://localhost:3001/api/files', {
@@ -31,19 +32,6 @@ const ViewAllFiles = () => {
       fetchFiles();
     }
   }, []);
-
-  const handleDownload = (e, id) => {
-    axios
-      .get(`http://localhost:3001/api/files/download/${id}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('myUserToken')}` },
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   const handleDelete = (e, id) => {
     axios
@@ -113,11 +101,11 @@ const ViewAllFiles = () => {
 
         <Row>
           <Col md={6} className="custom-search d-flex align-items-center">
-            <Form.Control type="text" placeholder="Search by name" />
+            <Form.Control type="text" placeholder="Search by name" value={searchQuery} onChange={handleSearch}/>
           </Col>
 
           <Col md={6} className="d-flex align-items-center custom-sort-upload">
-            <Form.Select className="custom-select">
+            <Form.Select className="custom-select" value={sortOrder} onChange={handleSort}>
               <option value="asc">Sort A to Z</option>
               <option value="desc">Sort Z to A</option>
             </Form.Select>
