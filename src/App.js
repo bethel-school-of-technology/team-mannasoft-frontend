@@ -25,7 +25,8 @@ function App() {
       >
         <BrowserRouter>
           <Header /> {/* Apply header class */}
-          <NavbarComponent />
+          {/* <NavbarComponent />  */}
+          {/* NavbarComponent - Testing new navbar design */}
           <Container>
             <Routes>
               <Route path="/" element={<Home />} />

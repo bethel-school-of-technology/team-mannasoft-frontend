@@ -17,7 +17,7 @@ const NavbarComponent = () => {
           <Nav.Link href="/about">About</Nav.Link>
         </Nav>
         <Nav className="ml-auto">
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center dropdown">
             <Nav.Link href="/signin">Sign In</Nav.Link>
             <Nav.Link href="/signup">Sign Up</Nav.Link>
             <NavDropdown title="Profile" id="collasible-nav-dropdown">
