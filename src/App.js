@@ -12,9 +12,8 @@ import About from './components/About';
 import DeleteUser from './components/DeleteUsers';
 import DisplayProfile from './components/DisplayProfile';
 import { UserProvider } from './contexts/UserProvider';
-import './styles/global.css'; // Import the App.css file
+import './styles/global.css';
 import { Container } from 'react-bootstrap';
-import NavbarComponent from './components/NavbarComponent';
 
 function App() {
   return (
@@ -25,9 +24,7 @@ function App() {
         }}
       >
         <BrowserRouter>
-          <Header /> {/* Apply header class */}
-          {/* <NavbarComponent />  */}
-          {/* NavbarComponent - Testing new navbar design */}
+          <Header />
           <Container>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -41,7 +38,7 @@ function App() {
               <Route path="/deleteuser" element={<DeleteUser />} />
             </Routes>
           </Container>
-          <Footer /> {/* Apply footer class */}
+          <Footer />
         </BrowserRouter>
       </div>
     </UserProvider>

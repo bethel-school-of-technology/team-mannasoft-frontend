@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/global.css';
 import { Col, Container, Row } from 'react-bootstrap';
 
 const About = () => {

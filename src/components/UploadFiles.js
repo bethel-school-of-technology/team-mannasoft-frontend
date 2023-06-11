@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Container, Form, Button, Toast } from 'react-bootstrap';
+import { Container, Form, Button, Toast, Row, Col } from 'react-bootstrap';
 import UserContext from '../contexts/UserContext';
 
 const UploadFiles = () => {
@@ -61,9 +61,6 @@ const UploadFiles = () => {
   if (verify) {
     return (
       <Container className="page-container">
-        <h1 className="display-5" style={{ paddingBottom: '20px' }}>
-          Upload Files
-        </h1>
         {show && (
           <div className="mb-5 d-flex justify-content-center">
             <Toast onClose={() => setShow(false)} show={show} delay={3000}>
@@ -75,32 +72,40 @@ const UploadFiles = () => {
             </Toast>
           </div>
         )}
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            {/* <Form.Label>File Upload:</Form.Label> */}
-            <Form.Control type="file" onChange={handleFileUpload} />
-          </Form.Group>
-          <Form.Group>
-            {/* <Form.Label>File Description:</Form.Label> */}
-            <Form.Control
-              placeholder="File Description"
-              as="textarea"
-              type="text"
-              value={description}
-              onChange={(e) => {
-                setDescription(e.target.value);
-              }}
-            />
-          </Form.Group>
-          <div style={{ paddingTop: '20px' }}>
-            <Button variant="secondary" href="/displayprofile">
-              Back
-            </Button>
-            <Button variant="primary" type="submit" style={{ marginLeft: '10px' }}>
-              Submit
-            </Button>
-          </div>
-        </Form>
+        <Row>
+          <Col md={6}>
+            <h1 className="display-5" style={{ paddingBottom: '20px' }}>
+              Upload Files
+            </h1>
+          </Col>
+          <Col md={6}>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group>
+                <Form.Control type="file" onChange={handleFileUpload} />
+              </Form.Group>
+              <Form.Group style={{ paddingTop: '20px' }}>
+                <Form.Control
+                  placeholder="File Description"
+                  as="textarea"
+                  type="text"
+                  value={description}
+                  style={{ minHeight: '100px' }}
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
+                />
+              </Form.Group>
+              <div style={{ paddingTop: '20px' }}>
+                <Button variant="secondary" href="/displayprofile">
+                  Back
+                </Button>
+                <Button variant="primary" type="submit" style={{ marginLeft: '10px' }}>
+                  Submit
+                </Button>
+              </div>
+            </Form>
+          </Col>
+        </Row>
       </Container>
     );
   } else {

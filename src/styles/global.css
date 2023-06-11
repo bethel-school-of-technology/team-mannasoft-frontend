@@ -36,6 +36,8 @@ body {
 }
 
 .page-container {
+  min-height: calc(100vh - 200px);
+
   display: flex;
   padding-top: 180px;
 }
@@ -90,23 +92,18 @@ h5 {
   font-size: 16px !important;
 }
 
+/* Home - Ratings */
+
 .rating {
   text-align: center;
 }
 
-.rating-comment,
-.rating-comment span {
-  font-family: var(--heading-font);
-  font-weight: 700;
-}
-
-.rating-comment span {
-  font-size: 4rem;
-  hanging-punctuation: first;
-}
-
 .rating-name {
   font-weight: 500;
+  padding-top: 12px;
+}
+
+#root > div > div.container > div:nth-child(n) > div:nth-child(n) > div:nth-child(n) > div > div.rating-comment > h2 {
   padding-top: 12px;
 }
 
@@ -175,15 +172,16 @@ textarea:focus {
   background-color: var(--neutral-color);
 }
 
+#root > div > div.container > div > div > div.custom-search.d-flex.align-items-center.col-md-6 > input {
+  border: var(--stroke-width) solid var(--text-color);
+  border-radius: 4px;
+}
+
 .custom-label {
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 600;
   font-family: var(--paragraph-font);
-}
-
-p span {
-  font-weight: 500;
 }
 
 /* Footer */
@@ -279,6 +277,7 @@ select.custom-select {
   padding: 10px;
   background-color: transparent;
   border: var(--stroke-width) solid var(--text-color);
+  border-radius: 4px;
 }
 
 .custom-search input[type='text'] {
@@ -333,4 +332,23 @@ hr {
 .services-icon {
   margin-bottom: 20px;
   margin-right: 0;
+}
+
+/* Upload Files */
+
+#root > div > div.container > div > form > div:nth-child(1) > input {
+  font-family: var(--paragraph-font);
+}
+
+#root > div > div.container > div > form > div:nth-child(2) > textarea {
+  font-family: var(--paragraph-font);
+}
+
+#root > div > div.container > div > div:nth-child(2) > div:nth-child(3) > a:nth-child(n) > svg {
+  color: var(--text-color);
+  opacity: 0.5;
+}
+#root > div > div.container > div > div:nth-child(2) > div:nth-child(3) > a:nth-child(n) > svg:hover {
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }

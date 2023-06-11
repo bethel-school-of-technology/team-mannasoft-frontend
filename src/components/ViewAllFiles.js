@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState, useContext } from 'react';
 import { Form, Button, Table, Container, Row, Col } from 'react-bootstrap';
-import { FileEarmarkPdf, FileEarmarkWord, FileEarmarkBarGraph, FileEarmarkImage, FileEarmarkSlides, FileEarmarkText, FileTextFill, FileEarmarkZip, Download, Trash } from 'react-bootstrap-icons';
+import { FileEarmarkPdf, FileEarmarkWord, FileEarmarkBarGraph, FileEarmarkImage, FileEarmarkSlides, FileEarmarkText, FileTextFill, FileEarmarkZip, FileEarmarkEasel, Download, Trash } from 'react-bootstrap-icons';
 import UserContext from '../contexts/UserContext';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,6 @@ const ViewAllFiles = () => {
   let { verifyUser } = useContext(UserContext);
 
   useEffect(() => {
-
     async function fetchFiles() {
       try {
         const response = await axios.get('http://localhost:3001/api/files', {
@@ -69,6 +68,8 @@ const ViewAllFiles = () => {
     ppt: <FileEarmarkSlides />,
     keynote: <FileEarmarkSlides />,
     txt: <FileEarmarkText />,
+    svg: <FileEarmarkText />,
+    ai: <FileEarmarkText />,
     zip: <FileEarmarkZip />,
   };
 
@@ -101,7 +102,7 @@ const ViewAllFiles = () => {
 
         <Row>
           <Col md={6} className="custom-search d-flex align-items-center">
-            <Form.Control type="text" placeholder="Search by name" value={searchQuery} onChange={handleSearch}/>
+            <Form.Control type="text" placeholder="Search by name" value={searchQuery} onChange={handleSearch} />
           </Col>
 
           <Col md={6} className="d-flex align-items-center custom-sort-upload">
@@ -115,7 +116,6 @@ const ViewAllFiles = () => {
           </Col>
         </Row>
 
-        {/* <Table style={{ border: '1px solid black' }}> */}
         <Table borderedStyle={{ border: 'none' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid black' }}>
