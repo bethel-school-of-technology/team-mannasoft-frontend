@@ -1,7 +1,8 @@
 import React from 'react';
 import '../styles/global.css';
 import { ReactComponent as PersonalFiles } from '../images/personalFiles.svg';
-import { Col, Container, Row, Card } from 'react-bootstrap';
+import { Devices, LockKey, Folders, DiamondsFour } from '@phosphor-icons/react';
+import { Col, Container, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 
 function Home() {
@@ -73,33 +74,41 @@ function Home() {
         <Row>
           <Col md={6}>
             <h4>02 — Our Services</h4>
-            <p>At LegalEase, we are dedicated to simplifying the management of your personal information and vital documents. Our comprehensive suite of services empowers you to organize, securely store, and effortlessly access your important files from one convenient platform. With our user-friendly interface and robust security features, you can trust LegalEase to streamline your document management process, providing you with peace of mind and valuable time savings. Discover how our innovative solutions can transform the way you manage and protect your personal information.</p>
+            <h2 className="display-6">Discover how our innovative solutions can transform the way you manage your information.</h2>
           </Col>
         </Row>
-        <Row>
-          <Col md={4} className="mb-4">
-            <Card>
-              <Card.Body>
-                <Card.Title>Document Organization</Card.Title>
-                <Card.Text>LegalEase offers a comprehensive and intuitive system to efficiently organize, categorize, and manage your personal information and important documents, ensuring easy accessibility whenever you need them.</Card.Text>
-              </Card.Body>
-            </Card>
+        <Row style={{ marginTop: '90px', border: 'solid', padding: '40px', borderRadius: '20px' }}>
+          <Col md={6} lg={3} className="mb-4">
+            <div className="services">
+              <Folders className="services-icon" size={64} weight="thin" color="var(--accent-color)" />
+              <h2>Document Organization</h2>
+              <p>LegalEase offers a comprehensive and intuitive system to efficiently organize, categorize, and manage your personal information and important documents, ensuring easy accessibility whenever you need them.</p>
+            </div>
           </Col>
-          <Col md={4} className="mb-4">
-            <Card>
-              <Card.Body>
-                <Card.Title>Secure Storage</Card.Title>
-                <Card.Text>With LegalEase, you can confidently store your sensitive documents in one secure location, protected by robust encryption and advanced security measures, providing peace of mind knowing that your information is safe and confidential.</Card.Text>
-              </Card.Body>
-            </Card>
+          <Col md={6} lg={3} className="mb-4">
+            <div className="services">
+              <LockKey className="services-icon" size={64} weight="thin" color="var(--accent-color)" />
+              <h2>
+                Secure
+                <br />
+                Storage
+              </h2>
+              <p>With LegalEase, you can confidently store your documents in one secure location, protected by robust encryption providing peace of mind knowing that your information is safe.</p>
+            </div>
           </Col>
-          <Col md={4} className="mb-4">
-            <Card>
-              <Card.Body>
-                <Card.Title>Smart Document Management</Card.Title>
-                <Card.Text>LegalEase utilizes intelligent algorithms and advanced search functionalities, enabling you to quickly find specific documents, extract relevant information, and streamline your document management process, saving you valuable time and effort.</Card.Text>
-              </Card.Body>
-            </Card>
+          <Col md={6} lg={3} className="mb-4">
+            <div className="services">
+              <DiamondsFour className="services-icon" size={64} weight="thin" color="var(--accent-color)" />
+              <h2>Smart Document Management</h2>
+              <p>LegalEase utilizes intelligent algorithms and advanced functionalities, enabling you to quickly extract relevant information, saving you valuable time and effort.</p>
+            </div>
+          </Col>
+          <Col md={6} lg={3} className="mb-4">
+            <div className="services">
+              <Devices className="services-icon" size={64} weight="thin" color="var(--accent-color)" />
+              <h2>Document Access on the Go</h2>
+              <p>Whether you're using a desktop computer, laptop, tablet, or smartphone, our mobile-friendly app ensures that you have secure access to your documents on the go.</p>
+            </div>
           </Col>
         </Row>
       </Container>

@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { PencilSquare, Upload } from 'react-bootstrap-icons';
+import { Upload } from 'react-bootstrap-icons';
 
 const DisplayProfile = () => {
   let { userId } = useParams();
@@ -29,7 +28,7 @@ const DisplayProfile = () => {
     if (token) {
       fetch();
     }
-  }, [getUser, userId]);
+  }, [verifyUser, getUser, userId]);
 
   function handleDeleteUser(event) {
     event.preventDefault();

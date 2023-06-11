@@ -3,6 +3,7 @@ import { ReactComponent as LegaleaseLogo } from '../images/legaleaseLogo.svg';
 import { ReactComponent as Facebook } from '../images/facebook.svg';
 import { ReactComponent as LinkedIn } from '../images/linkedIn.svg';
 import { Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -12,19 +13,21 @@ const Footer = () => {
           <LegaleaseLogo className="logo" />
         </Col>
         <Col md={1}>
-          <p>About</p>
+          <Link className="footer-links" to="/about">
+            About
+          </Link>
         </Col>
         <Col md={1}>
-          <p>Help</p>
+          <Link className="footer-links">Help</Link>
         </Col>
         <Col md={1}>
-          <p>Contact</p>
+          <Link className="footer-links">Contact</Link>
         </Col>
       </Row>
 
       <Row className="align-bottom">
         <Col md={7}>
-          <p className="footer-copyright">&copy; 2023 All Rights Reserved - Bethel Tech - MannaSoft</p>
+          <p className="footer-copyright">&copy; 2023 Bethel Tech, MannaSoft. All Rights Reserved</p>
         </Col>
         <Col md={1}>
           <Facebook className="social-media-icons" />
