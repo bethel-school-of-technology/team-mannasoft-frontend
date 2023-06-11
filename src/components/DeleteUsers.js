@@ -54,7 +54,7 @@ const DeleteUser = () => {
           <Form.Label className="custom-label">Password</Form.Label>
           <Form.Control type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} />
         </Form.Group>
-        <Button className="custom-button" type="submit">Terminate Account</Button>
+        <Button className="custom-button"  variant="danger"  type="submit">Terminate Account</Button>
       </Form>
     );
   } else {

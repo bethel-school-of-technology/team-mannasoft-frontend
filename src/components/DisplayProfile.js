@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { PencilSquare, Upload } from 'react-bootstrap-icons';
 
@@ -76,7 +74,7 @@ const DisplayProfile = () => {
             </Button>
           </Col>
           <Col md={2}>
-            <Button variant="danger" onClick={handleDeleteUser}>
+            <Button variant="danger" href="/deleteuser">
               Deactivate Account
             </Button>
           </Col>
