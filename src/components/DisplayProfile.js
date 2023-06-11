@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { PencilSquare, Upload } from 'react-bootstrap-icons';
+import { Upload } from 'react-bootstrap-icons';
 
 
 const DisplayProfile = () => {

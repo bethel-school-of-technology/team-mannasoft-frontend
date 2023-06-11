@@ -14,6 +14,7 @@ import DisplayProfile from './components/DisplayProfile';
 import { UserProvider } from './contexts/UserProvider';
 import './styles/global.css'; // Import the App.css file
 import { Container } from 'react-bootstrap';
+import NavbarComponent from './components/NavbarComponent';
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
       >
         <BrowserRouter>
           <Header /> {/* Apply header class */}
+          {/* <NavbarComponent />  */}
+          {/* NavbarComponent - Testing new navbar design */}
           <Container>
             <Routes>
               <Route path="/" element={<Home />} />
