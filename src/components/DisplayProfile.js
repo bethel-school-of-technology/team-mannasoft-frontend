@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { Upload } from 'react-bootstrap-icons';
-
+import { Pencil, Trash } from '@phosphor-icons/react';
 
 const DisplayProfile = () => {
   let { userId } = useParams();
@@ -67,23 +66,25 @@ const DisplayProfile = () => {
           </Col>
         </Row>
 
-        <Row className="custom-padding">
-          <Col md={2}>
-            <Button variant="secondary" href="/editprofile">
-              Edit Profile
+        <Row style={{ paddingTop: '240px' }}>
+          <Col md={6}>
+            <Button variant="secondary" href="/uploadfiles" style={{ marginRight: '20px', marginBottom: '20px' }}>
+              Upload Files
+            </Button>
+            <Button variant="secondary" href="/viewallfiles" style={{ marginRight: '20px', marginBottom: '20px' }}>
+              View Files
             </Button>
           </Col>
-          <Col md={2}>
-            <Button variant="danger" href="/deleteuser">
-              Deactivate Account
-            </Button>
-          </Col>
-          <Col md={5}></Col>
-          <Col md={2}>
-            <Button href="/uploadfiles">
-              <Upload />
-              &nbsp;&nbsp;Upload Files
-            </Button>
+
+          <Col md={3}></Col>
+
+          <Col md={3}>
+            <Link href="/editprofile" style={{ marginRight: '20px' }}>
+              <Pencil size={32} weight="regular" />
+            </Link>
+            <Link href="/deleteuser">
+              <Trash size={32} weight="regular" />
+            </Link>
           </Col>
         </Row>
       </Container>

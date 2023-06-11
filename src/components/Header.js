@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ReactComponent as LegaleaseLogo } from '../images/legaleaseLogo.svg';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import useWindowDimensions from '../utils/useWindowDimensions';
 import '../styles/Header.css';
 import UserContext from '../contexts/UserContext';
 import { Nav, Navbar } from 'react-bootstrap';
@@ -11,7 +10,6 @@ const Header = () => {
   let navigate = useNavigate();
   const [verify, setVerify] = useState(null);
   let { userId } = useParams();
-  const { width } = useWindowDimensions();
 
   const [user, setUser] = useState({
     firstName: '',
