@@ -23,13 +23,13 @@ const DeleteUser = () => {
       if (token) {
         fetch();
       }
-  }, [getUser, userId]);
+  }, [userId]);
 
 //  , password
 
     function handleDeleteUser(event) {
         event.preventDefault();
-        deleteUser(user.userId)
+        deleteUser(user.userId, password)
         .then(() => {
           console.log(user.userId)
           console.log(password)
