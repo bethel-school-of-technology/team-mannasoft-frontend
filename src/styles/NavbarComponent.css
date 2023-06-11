@@ -1,0 +1,39 @@
+.custom-navbar {
+  background-color: transparent !important;
+  padding-left: 30px !important; /* Add left padding */
+  padding-right: 30px !important; /* Add right padding */
+}
+
+.navbar-nav.ml-auto {
+  margin-left: auto;
+}
+
+/* NavbarComponent.css */
+
+.custom-navbar .nav-link {
+  font-family: var(--paragraph-font);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color); /* Change the text color */
+  margin-right: 20px;
+}
+.custom-navbar .nav-link:hover {
+  transition: color 0.3s ease;
+  color: var(--accent-color); /* Change the text color */
+}
+
+.custom-navbar .ml-auto .nav-link[href='/signup'] {
+  padding: 10px 16px;
+  border-radius: 100px;
+  border: var(--stroke-width) solid var(--accent-color);
+  transition: background-color 0.3s ease;
+  color: var(--accent-color);
+}
+
+.custom-navbar .ml-auto .nav-link[href='/signup']:hover {
+  background-color: var(--accent-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: color 0.3s ease;
+  border: var(--stroke-width) solid var(--accent-color);
+  color: var(--neutral-color);
+}

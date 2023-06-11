@@ -12,6 +12,8 @@
   --accent-color: #1d38ed;
   --text-color: #000;
   --stroke-width: 1px;
+  --heading-font: 'Space Mono', monospace !important;
+  --paragraph-font: 'Inter', sans-serif !important;
 }
 
 /* Global styles */
@@ -45,12 +47,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Inter', sans-serif !important;
+  font-family: var(--paragraph-font);
 }
 
 h1,
 h2 {
-  font-family: 'Space Mono', monospace !important;
+  font-family: var(--heading-font);
   font-weight: 500 !important;
   font-variant-ligatures: no-common-ligatures !important;
 }
@@ -74,7 +76,7 @@ a,
 tr,
 th,
 select {
-  font-family: 'Inter', sans-serif !important;
+  font-family: var(--paragraph-font);
   line-height: 1.5 !important;
 }
 
@@ -94,7 +96,7 @@ h5 {
 
 .rating-comment,
 .rating-comment span {
-  font-family: 'Space Mono', monospace !important;
+  font-family: var(--heading-font);
   font-weight: 700;
 }
 
@@ -116,7 +118,7 @@ h5 {
   color: var(--neutral-color) !important;
   text-decoration: none !important;
   font-size: 16px !important;
-  font-family: 'Inter', sans-serif !important;
+  font-family: var(--paragraph-font);
 }
 
 .btn-primary {
@@ -158,7 +160,7 @@ textarea {
   border-radius: 0;
   font-size: 16px;
   margin-bottom: 20px;
-  font-family: 'Inter', sans-serif !important;
+  font-family: var(--paragraph-font);
   background-color: transparent;
   transition: background-color 0.3s ease;
 }
@@ -177,7 +179,7 @@ textarea:focus {
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 600;
-  font-family: 'Inter', sans-serif !important;
+  font-family: var(--paragraph-font);
 }
 
 p span {
@@ -191,12 +193,10 @@ p span {
   background-color: #ffffff87;
 }
 
-.footer p {
-  /* margin-bottom: 0; */
-}
-
 .footer-copyright {
   margin-top: 60px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .footer-links {
@@ -306,7 +306,7 @@ hr {
   border-radius: 1000px !important;
   transition: background-color 0.3s ease !important;
   font-size: 16px !important;
-  font-family: 'Inter', sans-serif !important;
+  font-family: var(--paragraph-font);
 }
 
 .btn.btn-danger:hover {

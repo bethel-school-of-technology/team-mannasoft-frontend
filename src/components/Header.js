@@ -92,14 +92,24 @@ const Header = () => {
         </ul>
 
         <ul className="nav-right">
-          <li>
-            <Link to="/signin">Sign In</Link>
-          </li>
-          <li>
-            <Link className="nav-signup" to="/signup">
-              <span className="signup-link">Sign Up</span>
-            </Link>
-          </li>
+          {width > 575 ? (
+            <>
+              <li>
+                <Link to="/signin">Sign In</Link>
+              </li>
+              <li>
+                <Link className="nav-signup" to="/signup">
+                  <span className="signup-link">Sign Up</span>
+                </Link>
+              </li>
+            </>
+          ) : (
+            <NavDropdown title="Menu" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/about">About</NavDropdown.Item>
+              <NavDropdown.Item href="/signin">Sign In</NavDropdown.Item>
+              <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
+            </NavDropdown>
+          )}
         </ul>
       </div>
     );

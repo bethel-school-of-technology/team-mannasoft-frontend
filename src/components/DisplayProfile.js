@@ -28,7 +28,7 @@ const DisplayProfile = () => {
     if (token) {
       fetch();
     }
-  }, [verifyUser, getUser, userId]);
+  }, [getUser, userId]);
 
   function handleDeleteUser(event) {
     event.preventDefault();
