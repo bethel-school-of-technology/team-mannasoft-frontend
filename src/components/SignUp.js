@@ -40,7 +40,7 @@ const SignUp = () => {
   }
 if (verify) {
   return (
-    <h2>You are already signed in</h2>
+    <h2>YOU ARE ALREADY SIGNED IN</h2>
   )
 } else {
   return (

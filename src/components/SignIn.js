@@ -32,13 +32,13 @@ const SignIn = () => {
         .catch(error => {
           console.log(error);
           window.alert('Failed login');
-      })
+        })
   }
 
 
 if (verify) {
   return (
-    <h2>You are already signed in</h2>
+    <h2>YOU ARE ALREADY SIGNED IN</h2>
   );
 } else {
   return (

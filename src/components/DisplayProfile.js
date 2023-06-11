@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { useParams, useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
 
 const DisplayProfile = () => {
   let { userId } = useParams();
@@ -50,7 +50,7 @@ const DisplayProfile = () => {
         <p>Phone Number: {user.phoneNumber}</p>
         <Link to="/editprofile">Edit User</Link>
         <br />
-        <button onClick={handleDeleteUser}>Delete User</button>
+        <Button href="/deleteuser">Delete User</Button>
       </div>
     );
   } else {

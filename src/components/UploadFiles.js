@@ -73,7 +73,6 @@ if (verify) {
                   alt=""
                 />
                 <strong className="me-auto">Error</strong>
-                {/* <small>11 mins ago</small> */}
               </Toast.Header>
               <Toast.Body>Duplicate File Found!</Toast.Body>
             </Toast>

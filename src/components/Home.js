@@ -13,7 +13,6 @@ function Home() {
             <h1 className="display-3">Streamline your life with ease</h1>
             <h3>LegalEase effortlessly manages your personal information and vital documents, all conveniently stored in one secure location</h3>
             <Button variant="secondary">Get Started</Button>
-            {/* <Button variant="link">About Us</Button> */}
           </Col>
           <Col md={6}>
             <FolderFiles className="folderFiles-svg" />

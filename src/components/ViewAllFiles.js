@@ -16,9 +16,13 @@ const ViewAllFiles = () => {
   useEffect(() => {
     async function fetch() {
       axios
-        .get('http://localhost:3001/api/files', {headers: {Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,},})
-        .then((response) => {console.log(response);setFiles(response.data);})
-        .catch((error) => {console.log(error);
+        .get('http://localhost:3001/api/files', {headers: {Authorization: `Bearer ${localStorage.getItem('myUserToken')}`}})
+        .then((response) => {
+          console.log(response);
+          setFiles(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
         });
       setVerify(await verifyUser())
   }
@@ -27,25 +31,6 @@ const ViewAllFiles = () => {
     fetch();
   }
   }, []);
-  {
-    /* <a href={`http://localhost:3001/api/files/${file.fileId}`}>Download File</a> */
-  }
-  // handle errors
-// handle the response
-  const handleDownload = (e, id) => {
-    axios
-      .get(`http://localhost:3001/api/files/download/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .then((response) => {
-        console.log(response.data);
-      });
-  };
 
   const handleDelete = (e, id) => {
     axios
@@ -99,26 +84,18 @@ const ViewAllFiles = () => {
 
       <Row xs={1} sm={2} md={3} className="g-4">
         {filteredFiles.map((file, index) => (
-          // {files.map((file, index) => (
           <Col key={file.fileId}>
             <Card style={{ width: '18rem' }}>
               <Card.Body>
                 <Card.Title>{file.fileName}</Card.Title>
-                {/* <Card.Subtitle className="mb-2 text-muted">{file.type}</Card.Subtitle> */}
                 <Card.Text>
                   <p> {file.description}</p>
                   <p>
-                    {/* <button onClick={(e) => handleDownload(e, file.fileId)}>Download File</button> */}
                     <Button href={'http://localhost:3001/api/files/download/' + file.storedName}>Download</Button>
                     <Button onClick={(e) => handleDelete(e, file.fileId)}>Delete</Button>
                   </p>
                 </Card.Text>
               </Card.Body>
-              {/* <ListGroup variant="flush">
-                {file.tags.map((tag, index) => (
-                  <ListGroup.Item key={index}>{tag}</ListGroup.Item>
-                ))}
-              </ListGroup> */}
             </Card>
           </Col>
         ))}
