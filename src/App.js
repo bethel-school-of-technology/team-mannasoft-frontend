@@ -9,6 +9,7 @@ import UploadFiles from './components/UploadFiles';
 import ViewAllFiles from './components/ViewAllFiles';
 import Footer from './components/Footer';
 import About from './components/About';
+import DeleteUser from './components/DeleteUsers';
 import DisplayProfile from './components/DisplayProfile';
 import { UserProvider } from './contexts/UserProvider';
 import './styles/global.css'; // Import the App.css file
@@ -34,6 +35,7 @@ function App() {
               <Route path="/editprofile" element={<EditProfile />} />
               <Route path="/uploadfiles" element={<UploadFiles />} />
               <Route path="/viewallfiles" element={<ViewAllFiles />} />
+              <Route path="/deleteuser" element={<DeleteUser />} />
             </Routes>
           </Container>
           <Footer /> {/* Apply footer class */}

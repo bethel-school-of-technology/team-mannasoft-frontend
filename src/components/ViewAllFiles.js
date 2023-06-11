@@ -14,6 +14,7 @@ const ViewAllFiles = () => {
   let { verifyUser } = useContext(UserContext);
 
   useEffect(() => {
+
     async function fetchFiles() {
       try {
         const response = await axios.get('http://localhost:3001/api/files', {
