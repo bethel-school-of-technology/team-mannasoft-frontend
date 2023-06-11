@@ -18,8 +18,13 @@ import { Container } from 'react-bootstrap';
 function App() {
   return (
     <UserProvider>
-      <BrowserRouter>
-        <Header /> {/* Apply header class */}
+      <div
+        style={{
+          backgroundColor: 'var(--neutral-color)',
+        }}
+      >
+        <BrowserRouter>
+          <Header /> {/* Apply header class */}
           <Container>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -33,8 +38,9 @@ function App() {
               <Route path="/deleteuser" element={<DeleteUser />} />
             </Routes>
           </Container>
-        <Footer /> {/* Apply footer class */}
-      </BrowserRouter>
+          <Footer /> {/* Apply footer class */}
+        </BrowserRouter>
+      </div>
     </UserProvider>
   );
 }

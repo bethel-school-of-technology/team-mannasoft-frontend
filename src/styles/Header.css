@@ -1,0 +1,82 @@
+/* Nav Bar */
+
+.dropdown-toggle .nav-link {
+  color: red;
+  font-family: serif;
+}
+
+.nav {
+  height: 100px;
+  /* padding: 30px; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: red; */
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 30px;
+}
+
+.nav-right {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  margin: 0 20px;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  color: var(--text-color);
+}
+
+.nav a:hover {
+  color: var(--accent-color);
+}
+
+.nav-signup {
+  padding: 10px 16px;
+  border-radius: 100px;
+  border: var(--stroke-width) solid var(--accent-color);
+  transition: background-color 0.3s ease;
+}
+
+.nav-signup .signup-link {
+  color: var(--accent-color);
+  transition: background-color 0.3s ease;
+}
+
+.nav-signup:hover {
+  background-color: var(--accent-color);
+  transition: background-color 0.3s ease;
+  border: var(--stroke-width) solid var(--accent-color);
+}
+
+.nav-signup:hover .signup-link {
+  color: var(--neutral-color);
+  transition: background-color 0.3s ease;
+}
+
+.custom-dropdown .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+ul.nav-right {
+  padding: 0;
+}
+
+#root > div > div.nav > ul:nth-child(1) {
+  padding-right: 0;
+}
