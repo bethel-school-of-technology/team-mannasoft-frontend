@@ -82,7 +82,7 @@ const DisplayProfile = () => {
             <Link href="/editprofile" style={{ marginRight: '20px' }}>
               <Pencil size={32} weight="regular" />
             </Link>
-            <Link href="/deleteuser">
+            <Link onClick={handleDeleteUser}>
               <Trash size={32} weight="regular" />
             </Link>
           </Col>
