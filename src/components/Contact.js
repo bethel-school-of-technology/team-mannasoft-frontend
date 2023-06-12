@@ -25,7 +25,7 @@ const Contact = () => {
             </a>
           </p>
 
-          <p>We're available during regular business hours, Monday to Friday, 9:00 AM - 5:00 PM.</p>
+          <p>We're available during from Monday to Friday, 9:00 AM - 5:00 PM.</p>
         </Col>
       </Row>
     </Container>
