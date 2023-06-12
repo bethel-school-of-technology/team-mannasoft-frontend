@@ -25,23 +25,17 @@ const DeleteUser = () => {
     }
   }, [getUser, userId]);
 
-  //  , password
-
   function handleDeleteUser(event) {
     event.preventDefault();
-    deleteUser(user.userId)
-      .then(() => {
-        console.log(user.userId);
-        console.log(password);
-        navigate('/');
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log(user.userId);
-        console.log(password);
-        window.alert('Failed To Delete');
-      });
+  deleteUser(user.userId, password)
+    .then(() => {
+      navigate('/');
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.log(error);
+      window.alert('Failed To Delete');
+    });
   }
 
   if (verify) {

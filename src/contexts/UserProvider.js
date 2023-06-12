@@ -25,7 +25,6 @@ export const UserProvider = (props) => {
     let myHeaders = {
       Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
     };
-
     return axios.get(baseUrl + userId, {headers: myHeaders}).then((response) => {
       return new Promise(resolve => resolve(response.data));
     });
@@ -46,7 +45,6 @@ export const UserProvider = (props) => {
     let myHeaders = {
       Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
     };
-
     return axios.post(baseUrl + 'signout', null, { headers: myHeaders }).then((response) => {
       localStorage.removeItem('myUserToken', response.data.token);
       return new Promise((resolve) => resolve(response.data));
@@ -54,9 +52,7 @@ export const UserProvider = (props) => {
   }
 
   function deleteUser(userId, password) {
-    let user = {password};
-    console.log(user)
-
+    let user = {password}
     let myHeaders = {
       Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
     };
@@ -64,7 +60,7 @@ export const UserProvider = (props) => {
       return axios.delete(baseUrl + userId, user, { headers: myHeaders }).then((response) => {
       localStorage.removeItem('myUserToken', response.data.token);
       return new Promise((resolve) => resolve(response.data));
-    });
+    })
   }
 
   function verifyUser() {
