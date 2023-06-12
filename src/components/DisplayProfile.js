@@ -79,7 +79,7 @@ const DisplayProfile = () => {
           <Col md={3}></Col>
 
           <Col md={3}>
-            <Link href="/editprofile" style={{ marginRight: '20px' }}>
+            <Link to="/editprofile" style={{ marginRight: '20px' }}>
               <Pencil size={32} weight="regular" />
             </Link>
             <Link onClick={handleDeleteUser}>
