@@ -54,6 +54,9 @@ const Header = () => {
           <Nav className="mr-auto">
             <Nav.Link href="/about">About</Nav.Link>
           </Nav>
+          <Nav className="mr-auto">
+            <Nav.Link href="/contact">Contact</Nav.Link>
+          </Nav>
           <Nav className="ml-auto">
             <div className="d-flex align-items-center">
               <NavDropdown title={`Hello, ${user.firstName}`} id="collasible-nav-dropdown dropdown-menu-align-end" align="end">
@@ -89,6 +92,9 @@ const Header = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/about">About</Nav.Link>
+          </Nav>
+          <Nav className="mr-auto">
+            <Nav.Link href="/contact">Contact</Nav.Link>
           </Nav>
           <Nav className="ml-auto">
             <div className="d-flex align-items-center">

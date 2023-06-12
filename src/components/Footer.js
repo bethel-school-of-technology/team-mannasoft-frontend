@@ -18,10 +18,14 @@ const Footer = () => {
           </Link>
         </Col>
         <Col md={1}>
-          <Link className="footer-links">Help</Link>
+          <Link className="footer-links" to="/contact">
+            Contact
+          </Link>
         </Col>
         <Col md={1}>
-          <Link className="footer-links">Contact</Link>
+          <Link className="footer-links" to="/faq">
+            FAQ
+          </Link>
         </Col>
       </Row>
       <Row className="align-bottom">

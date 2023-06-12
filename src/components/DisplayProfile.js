@@ -43,7 +43,7 @@ const DisplayProfile = () => {
       <Container className="page-container">
         <Row>
           <Col md={6}>
-            <h3 className="display-4">
+            <h3 className="display-4" style={{ marginBottom: '20px' }}>
               {user.firstName} {user.lastName}
             </h3>
           </Col>
