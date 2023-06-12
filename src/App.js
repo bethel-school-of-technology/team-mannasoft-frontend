@@ -9,6 +9,8 @@ import UploadFiles from './components/UploadFiles';
 import ViewAllFiles from './components/ViewAllFiles';
 import Footer from './components/Footer';
 import About from './components/About';
+import Faq from './components/Faq';
+import Contact from './components/Contact';
 import DeleteUser from './components/DeleteUsers';
 import DisplayProfile from './components/DisplayProfile';
 import { UserProvider } from './contexts/UserProvider';
@@ -29,6 +31,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+              <Route path="/faq" element={<Faq />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/displayprofile" element={<DisplayProfile />} />

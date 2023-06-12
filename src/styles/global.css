@@ -82,10 +82,6 @@ select {
   line-height: 1.5 !important;
 }
 
-h3 {
-  padding-bottom: 20px;
-}
-
 h5 {
   text-transform: uppercase;
   font-weight: 600 !important;
@@ -351,4 +347,14 @@ hr {
 #root > div > div.container > div > div:nth-child(2) > div:nth-child(3) > a:nth-child(n) > svg:hover {
   opacity: 1;
   transition: opacity 0.3s ease;
+}
+
+.contact-links {
+  text-decoration: none;
+  color: var(--text-color);
+}
+.contact-links:hover {
+  text-decoration: none;
+  color: var(--accent-color);
+  transition: color 0.3s ease;
 }

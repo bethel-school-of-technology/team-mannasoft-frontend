@@ -48,7 +48,7 @@ const DeleteUser = () => {
     return (
       <Container className="page-container">
         <Row>
-          <h3>Enter your password to confirm account deactivation</h3>
+          <h3 style={{ marginBottom: '20px' }}>Enter your password to confirm account deactivation</h3>
 
           <Col md={6}>
             <Form onSubmit={handleDeleteUser}>
