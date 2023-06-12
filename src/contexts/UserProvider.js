@@ -26,7 +26,7 @@ export const UserProvider = (props) => {
       Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
     };
 
-    return axios.get(baseUrl + userId, {headers: myHeaders}).then((response) => {
+    return axios.get(baseUrl + userId, { headers: myHeaders }).then((response) => {
       return new Promise(resolve => resolve(response.data));
     });
   }
@@ -53,15 +53,12 @@ export const UserProvider = (props) => {
     });
   }
 
-  function deleteUser(userId, password) {
-    let user = {password};
-    console.log(user)
-
+  function deleteUser(userId) {
     let myHeaders = {
       Authorization: `Bearer ${localStorage.getItem('myUserToken')}`,
     };
 
-      return axios.delete(baseUrl + userId, user, { headers: myHeaders }).then((response) => {
+    return axios.delete(baseUrl + userId, { headers: myHeaders }).then((response) => {
       localStorage.removeItem('myUserToken', response.data.token);
       return new Promise((resolve) => resolve(response.data));
     });
@@ -69,15 +66,15 @@ export const UserProvider = (props) => {
 
   function verifyUser() {
     let myHeaders = {
-        Authorization: `Bearer ${localStorage.getItem('myUserToken')}`
+      Authorization: `Bearer ${localStorage.getItem('myUserToken')}`
     };
-    return axios.get(baseUrl + "verifyuser", {headers: myHeaders})
-    .then(response => {
+    return axios.get(baseUrl + "verifyuser", { headers: myHeaders })
+      .then(response => {
         return new Promise(resolve => resolve(response.data));
-    }).catch((error) =>
-    new Promise((_, reject) => reject(error.response.statusText))
-  )
-}
+      }).catch((error) =>
+        new Promise((_, reject) => reject(error.response.statusText))
+      )
+  }
 
   return (
     <UserContext.Provider

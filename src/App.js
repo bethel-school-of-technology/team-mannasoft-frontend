@@ -11,7 +11,6 @@ import Footer from './components/Footer';
 import About from './components/About';
 import Faq from './components/Faq';
 import Contact from './components/Contact';
-import DeleteUser from './components/DeleteUsers';
 import DisplayProfile from './components/DisplayProfile';
 import { UserProvider } from './contexts/UserProvider';
 import './styles/global.css';
@@ -39,7 +38,6 @@ function App() {
               <Route path="/editprofile" element={<EditProfile />} />
               <Route path="/uploadfiles" element={<UploadFiles />} />
               <Route path="/viewallfiles" element={<ViewAllFiles />} />
-              <Route path="/deleteuser" element={<DeleteUser />} />
             </Routes>
           </Container>
           <Footer />
