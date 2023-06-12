@@ -24,7 +24,6 @@ const Footer = () => {
           <Link className="footer-links">Contact</Link>
         </Col>
       </Row>
-
       <Row className="align-bottom">
         <Col md={7}>
           <p className="footer-copyright">&copy; 2023 Bethel Tech, MannaSoft. All Rights Reserved</p>

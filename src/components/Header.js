@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ReactComponent as LegaleaseLogo } from '../images/legaleaseLogo.svg';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import '../styles/Header.css';
