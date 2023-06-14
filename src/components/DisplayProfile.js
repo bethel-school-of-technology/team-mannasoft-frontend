@@ -6,10 +6,13 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Pencil, Trash } from '@phosphor-icons/react';
 
 const DisplayProfile = () => {
+  //
   let { userId } = useParams();
   let navigate = useNavigate();
   let { getUser, deleteUser, verifyUser } = useContext(UserContext);
   const [verify, setVerify] = useState(null);
+
+  //sets user and setUser as empty strings to be populated with the user's info
   const [user, setUser] = useState({
     userId: '',
     username: '',
@@ -19,6 +22,7 @@ const DisplayProfile = () => {
     phoneNumber: '',
   });
 
+  //Calls the get user from the userProvider and sets the page to the user's unique id. Fetches the user token
   useEffect(() => {
     async function fetch() {
       await getUser(userId).then((userId) => setUser(userId));
@@ -30,6 +34,7 @@ const DisplayProfile = () => {
     }
   }, [getUser, userId]);
 
+  //Calls the deleteUser from the UserProvider and navigates to the home page.
   function handleDeleteUser(event) {
     event.preventDefault();
     deleteUser(user.userId).then(() => {
@@ -39,6 +44,7 @@ const DisplayProfile = () => {
   }
 
   if (verify) {
+    //User's profile
     return (
       <Container className="page-container">
         <Row>

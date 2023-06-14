@@ -11,12 +11,14 @@ const EditProfile = () => {
   let { userId } = useParams();
   let navigate = useNavigate();
 
+  //username, email, and phone number are to be used
   const [user, setUser] = useState({
     username: '',
     email: '',
     phoneNumber: '',
   });
 
+    //fetches the user token
   useEffect(() => {
     async function fetch() {
       await getUser(userId).then((userId) => setUser(userId));
@@ -25,6 +27,7 @@ const EditProfile = () => {
     fetch();
   }, [getUser, userId]);
 
+  //Sets the user to the new user data.
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUser((prevState) => ({
@@ -33,6 +36,8 @@ const EditProfile = () => {
     }));
   };
 
+  //when the user submits the form, calls the createUser from the UserProvider and brings the user to the sign in page.
+  //If the form fails to submit, then alerts the user that registration failed.
   const handleSubmit = (event) => {
     event.preventDefault();
     editUser(user.userId, user.username, user.email, user.phoneNumber)
@@ -46,6 +51,7 @@ const EditProfile = () => {
   };
 
   if (verify) {
+    //Form to edit user.
     return (
       <Container className="page-container">
         <Row style={{ border: 'solid', padding: '40px', borderRadius: '20px' }}>

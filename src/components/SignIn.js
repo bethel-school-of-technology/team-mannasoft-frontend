@@ -11,6 +11,7 @@ const SignIn = () => {
   let { signInUser, verifyUser } = useContext(UserContext);
   let navigate = useNavigate();
 
+  //fetches the user token
   useEffect(() => {
     async function fetch() {
       setVerify(await verifyUser());
@@ -21,6 +22,8 @@ const SignIn = () => {
     }
   }, []);
 
+  //When the user submits the form, calls the signInUser from the UserProvider and brings the user to the profile page.
+  //If the form fails to submit, then alerts the user that login failed.
   function handleSubmit(event) {
     event.preventDefault();
     signInUser(username, password)
@@ -37,6 +40,7 @@ const SignIn = () => {
   if (verify) {
     return <h2>You are already signed in</h2>;
   } else {
+    //Form to login user.
     return (
       <Container className="page-container">
         <Row>

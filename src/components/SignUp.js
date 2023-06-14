@@ -17,6 +17,7 @@ const SignUp = () => {
   let { createUser, verifyUser } = useContext(UserContext);
   let navigate = useNavigate();
 
+  //fetches the user token
   useEffect(() => {
     async function fetch() {
       setVerify(await verifyUser());
@@ -27,6 +28,8 @@ const SignUp = () => {
     }
   }, []);
 
+  //when the user submits the form, calls the createUser from the UserProvider and brings the user to the sign in page.
+  //If the form fails to submit, then alerts the user that registration failed.
   function handleSubmit(event) {
     event.preventDefault();
     createUser(username, password, firstName, lastName, email, phoneNumber)
@@ -41,6 +44,7 @@ const SignUp = () => {
   if (verify) {
     return <h2>You are already signed in</h2>;
   } else {
+    //Form for the user to register.
     return (
       <Container>
         <Row className="center-align">
