@@ -38,12 +38,6 @@
   color: var(--neutral-color);
 }
 
-.custom-dropdown-item {
-  font-family: Arial;
-  background-color: lightblue;
-  border: 1px solid red;
-}
-
 #responsive-navbar-nav > div.ml-auto.navbar-nav > div > div > div {
   background-color: var(--neutral-color);
   border: var(--stroke-width) solid var(--text-color);

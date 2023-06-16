@@ -13,8 +13,8 @@ import Faq from './components/Faq';
 import Contact from './components/Contact';
 import DisplayProfile from './components/DisplayProfile';
 import { UserProvider } from './contexts/UserProvider';
-import './styles/global.css';
 import { Container } from 'react-bootstrap';
+import './styles/global.css'; // global styles
 
 function App() {
   return (

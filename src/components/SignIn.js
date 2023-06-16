@@ -41,7 +41,6 @@ const SignIn = () => {
       <Container className="page-container">
         <Row>
           <Col md={6}>
-            {' '}
             <h1 className="display-5">Welcome Back</h1>
           </Col>
           <Col md={6}>

@@ -58,19 +58,11 @@ const Header = () => {
           <Nav className="ml-auto">
             <div className="d-flex align-items-center">
               <NavDropdown title={`Hello, ${user.firstName}`} id="collasible-nav-dropdown dropdown-menu-align-end" align="end">
-                <NavDropdown.Item href="/displayprofile" className="custom-dropdown-item">
-                  View Profile
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/uploadfiles" className="custom-dropdown-item">
-                  Upload Files
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/viewallfiles" className="custom-dropdown-item">
-                  View All Files
-                </NavDropdown.Item>
+                <NavDropdown.Item href="/displayprofile">View Profile</NavDropdown.Item>
+                <NavDropdown.Item href="/uploadfiles">Upload Files</NavDropdown.Item>
+                <NavDropdown.Item href="/viewallfiles">View All Files</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={handleSignOut} className="custom-dropdown-item">
-                  Sign Out
-                </NavDropdown.Item>
+                <NavDropdown.Item onClick={handleSignOut}>Sign Out</NavDropdown.Item>
               </NavDropdown>
             </div>
           </Nav>
@@ -83,7 +75,7 @@ const Header = () => {
   } else {
     return (
       <Navbar collapseOnSelect expand="sm" className="custom-navbar">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <LegaleaseLogo alt="" width="120" height="30" className="d-inline-block align-top" style={{ marginRight: '20px' }} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -16,7 +16,7 @@
   --paragraph-font: 'Inter', sans-serif !important;
 }
 
-/* Global styles */
+/* Container styles */
 html,
 body {
   width: 100%;
@@ -55,7 +55,7 @@ h6 {
 h1,
 h2 {
   font-family: var(--heading-font);
-  font-weight: 500 !important;
+  font-weight: 500 !important; /* had to add !important to override bootstrap styles */
   font-variant-ligatures: no-common-ligatures !important;
 }
 
@@ -100,6 +100,7 @@ h5 {
 }
 
 #root > div > div.container > div:nth-child(n) > div:nth-child(n) > div:nth-child(n) > div > div.rating-comment > h2 {
+  /* some cases where I couldn't figure out how to select specific elements, had to use web inspector */
   padding-top: 12px;
 }
 

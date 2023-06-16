@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState, useContext } from 'react';
 import { Form, Button, Table, Container, Row, Col } from 'react-bootstrap';
-import { FileEarmarkPdf, FileEarmarkWord, FileEarmarkBarGraph, FileEarmarkImage, FileEarmarkSlides, FileEarmarkText, FileTextFill, FileEarmarkZip, FileEarmarkEasel, Download, Trash } from 'react-bootstrap-icons';
+import { FileEarmarkPdf, FileEarmarkWord, FileEarmarkBarGraph, FileEarmarkImage, FileEarmarkSlides, FileEarmarkText, FileTextFill, FileEarmarkZip, FileEarmarkEasel, Download, Trash } from 'react-bootstrap-icons'; // imported different icons for different files
 import UserContext from '../contexts/UserContext';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ const ViewAllFiles = () => {
   const [files, setFiles] = useState([]);
   const [verify, setVerify] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortOrder, setSortOrder] = useState('asc');
+  const [sortOrder, setSortOrder] = useState('asc'); // ascending order
 
   let { verifyUser } = useContext(UserContext);
 
@@ -47,14 +47,21 @@ const ViewAllFiles = () => {
       });
   };
 
+  // SEARCH functionality
+
   const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
+    setSearchQuery(e.target.value); // updates the searchQuery state with the entered value
   };
+
+  // SORT functionality
 
   const handleSort = (e) => {
-    setSortOrder(e.target.value);
+    setSortOrder(e.target.value); // updates the sortOrder state with the selected value
   };
 
+  // FILE ICONS
+
+  // assign icons to file types
   const fileTypeIcons = {
     pdf: <FileEarmarkPdf />,
     doc: <FileEarmarkWord />,
@@ -68,8 +75,8 @@ const ViewAllFiles = () => {
     ppt: <FileEarmarkSlides />,
     keynote: <FileEarmarkSlides />,
     txt: <FileEarmarkText />,
-    svg: <FileEarmarkText />,
-    ai: <FileEarmarkText />,
+    svg: <FileEarmarkEasel />,
+    ai: <FileEarmarkEasel />,
     zip: <FileEarmarkZip />,
   };
 
@@ -82,8 +89,11 @@ const ViewAllFiles = () => {
   };
 
   const sortedFiles = files.sort((a, b) => {
+    // variable is created to store the sorted files
+
     const fileNameA = a.fileName.toLowerCase();
     const fileNameB = b.fileName.toLowerCase();
+
     if (sortOrder === 'asc') {
       return fileNameA.localeCompare(fileNameB);
     } else {
@@ -91,7 +101,7 @@ const ViewAllFiles = () => {
     }
   });
 
-  const filteredFiles = sortedFiles.filter((file) => file.fileName.toLowerCase().includes(searchQuery.toLowerCase()));
+  const filteredFiles = sortedFiles.filter((file) => file.fileName.toLowerCase().includes(searchQuery.toLowerCase())); // list of sorted files (sortedFiles) is filtered based on the searchQuery state
 
   if (verify) {
     return (
@@ -101,10 +111,12 @@ const ViewAllFiles = () => {
         </h1>
 
         <Row>
+          {/* SEARCH FUNCTION */}
           <Col md={6} className="custom-search d-flex align-items-center">
             <Form.Control type="text" placeholder="Search by name" value={searchQuery} onChange={handleSearch} />
           </Col>
 
+          {/* SORT FUNCTION */}
           <Col md={6} className="d-flex align-items-center custom-sort-upload">
             <Form.Select className="custom-select" value={sortOrder} onChange={handleSort}>
               <option value="asc">Sort A to Z</option>
@@ -126,21 +138,25 @@ const ViewAllFiles = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredFiles.map((file) => (
-              <tr key={file.fileId} style={{ borderBottom: '1px solid black' }}>
-                <td className={`filetype-icon table-cell-center`}>{getFileTypeIcon(file.fileName)}</td>
-                <td className={`table-cell-center`}>{file.fileName}</td>
-                <td className={`table-cell-center`}>{file.description}</td>
-                <td className={`table-cell-center`}>
-                  <Link className="icon-link" to={`http://localhost:3001/api/files/download/${file.storedName}`}>
-                    <Download />
-                  </Link>
-                  <Link className="icon-link" to="#" onClick={(e) => handleDelete(e, file.fileId)}>
-                    <Trash />
-                  </Link>
-                </td>
-              </tr>
-            ))}
+            {filteredFiles.map(
+              (
+                file // for each file in filteredFiles, a table row is rendered with the corresponding file
+              ) => (
+                <tr key={file.fileId} style={{ borderBottom: '1px solid black' }}>
+                  <td className={`filetype-icon table-cell-center`}>{getFileTypeIcon(file.fileName)}</td>
+                  <td className={`table-cell-center`}>{file.fileName}</td>
+                  <td className={`table-cell-center`}>{file.description}</td>
+                  <td className={`table-cell-center`}>
+                    <Link className="icon-link" to={`http://localhost:3001/api/files/download/${file.storedName}`}>
+                      <Download />
+                    </Link>
+                    <Link className="icon-link" to="#" onClick={(e) => handleDelete(e, file.fileId)}>
+                      <Trash />
+                    </Link>
+                  </td>
+                </tr>
+              )
+            )}
           </tbody>
         </Table>
       </Container>

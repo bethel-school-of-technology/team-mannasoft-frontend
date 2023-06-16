@@ -44,6 +44,7 @@ function Home() {
             </Col>
             <Col md={6}>
               <PersonalFiles />
+              {/* Render SVG component */}
             </Col>
           </Row>
         </Container>

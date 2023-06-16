@@ -38,6 +38,7 @@ const DisplayProfile = () => {
     });
   }
 
+  // If user is verified
   if (verify) {
     return (
       <Container className="page-container">
@@ -89,6 +90,7 @@ const DisplayProfile = () => {
         </Row>
       </Container>
     );
+    // If user is NOT verified - render 403
   } else {
     return <h2>403 NOT SIGNED IN</h2>;
   }

@@ -3,7 +3,6 @@ import UserContext from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import '../styles/global.css';
 
 const EditProfile = () => {
   const [verify, setVerify] = useState(null);
@@ -45,6 +44,7 @@ const EditProfile = () => {
       });
   };
 
+  // If user is verified
   if (verify) {
     return (
       <Container className="page-container">
@@ -76,6 +76,7 @@ const EditProfile = () => {
         </Row>
       </Container>
     );
+    // If user is NOT verified - render 403
   } else {
     return (
       <Container>

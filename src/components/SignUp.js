@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
-import '../styles/global.css';
 import { ReactComponent as SignUpPeople } from '../images/signUpPeople.svg';
 
 const SignUp = () => {
